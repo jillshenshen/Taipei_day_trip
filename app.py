@@ -48,50 +48,57 @@ def attractions():
     content["data"]=[]
     x=int(page)*12
     cursor = connection.cursor()
+    try:    
+        if keyword:
+            sql='''select * from location where category=%s or name like concat('%',%s,'%')limit %s,12   '''	
+            val=(keyword,keyword,x)
+
+            next=(keyword,keyword,x+12)
+            cursor.execute(sql,next)
+            result=cursor.fetchall()
+            content["nextPage"]=""
+            if result:
+                content["nextPage"]=int(page)+1
+            if not result:
+                content["nextPage"]="null"    
+
+        else:
+            sql='''select * from location  limit  %s,12  '''
+            val=(x,)
+            next=(x+12,)
+            cursor.execute(sql,next)
+            result=cursor.fetchall()
+            content["nextPage"]=""
+            if result:
+                content["nextPage"]=int(page)+1
+            if not result:
+                content["nextPage"]="null"
+        cursor.execute(sql,val)
+        result=cursor.fetchall()
+
+        for i in result:
+            dic={}
         
-    if keyword:
-        sql='''select * from location where category=%s or name like concat('%',%s,'%')limit %s,12   '''	
-        val=(keyword,keyword,x)
-
-        next=(keyword,keyword,x+12)
-        cursor.execute(sql,next)
-        result=cursor.fetchall()
-        content["nextPage"]=""
-        if result:
-            content["nextPage"]=int(page)+1
-        if not result:
-            content["nextPage"]="null"    
-
-    else:
-        sql='''select * from location  limit  %s,12  '''
-        val=(x,)
-        next=(x+12,)
-        cursor.execute(sql,next)
-        result=cursor.fetchall()
-        content["nextPage"]=""
-        if result:
-            content["nextPage"]=int(page)+1
-        if not result:
-            content["nextPage"]="null"
-    cursor.execute(sql,val)
-    result=cursor.fetchall()
-
-    for i in result:
-        dic={}
-    
-        dic["id"]=i[0]
-        dic["name"]=i[1]
-        dic["address"]=i[2]
-        dic["category"]=i[3]
-        dic["images"]=(i[5].split(","))
-        dic["transport"]=i[6]
-        dic["latitude"]=i[7]
-        dic["longitude"]=i[8]
-        dic["mrt"]=i[9]
-        dic["description"]=i[11]
-    
-        content["data"].append(dic)
-
+            dic["id"]=i[0]
+            dic["name"]=i[1]
+            dic["address"]=i[2]
+            dic["category"]=i[3]
+            dic["images"]=(i[5].split(","))
+            dic["transport"]=i[6]
+            dic["latitude"]=i[7]
+            dic["longitude"]=i[8]
+            dic["mrt"]=i[9]
+            dic["description"]=i[11]
+        
+            content["data"].append(dic)
+    except:    
+        content={"error":True,"message":"伺服器出了問題，請找設計或維護網站的人..."}
+        app.config['JSON_AS_ASCII'] = False
+        json_string=jsonify(content)
+        res=make_response(json_string,500)
+        
+    finally:
+        cursor.close()    
    
     app.config['JSON_AS_ASCII'] = False
     json_string=jsonify(content)
@@ -164,6 +171,9 @@ def categories():
             content["data"]=data			
         except:
             content={"error":True,"message":"伺服器出了問題，請找設計或維護網站的人..."}
+            app.config['JSON_AS_ASCII'] = False
+            json_string=jsonify(content)
+            res=make_response(json_string,500)
         finally:
             cursor.close()
                     
