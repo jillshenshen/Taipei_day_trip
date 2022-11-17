@@ -60,7 +60,7 @@ def attractions():
             if result:
                 content["nextPage"]=int(page)+1
             if not result:
-                content["nextPage"]="null"    
+                content["nextPage"]=None
 
         else:
             sql='''select * from location  limit  %s,12  '''
@@ -72,7 +72,7 @@ def attractions():
             if result:
                 content["nextPage"]=int(page)+1
             if not result:
-                content["nextPage"]="null"
+                content["nextPage"]=None
         cursor.execute(sql,val)
         result=cursor.fetchall()
 
@@ -96,7 +96,7 @@ def attractions():
         app.config['JSON_AS_ASCII'] = False
         json_string=jsonify(content)
         res=make_response(json_string,500)
-        
+
     finally:
         cursor.close()    
    
