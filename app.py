@@ -10,17 +10,36 @@ from flask import Flask ,request,render_template,session,redirect,url_for,make_r
 from flask import jsonify
 import json 
 import mysql.connector
-from mysql.connector import Error
+from mysql.connector import Error,pooling
 
-app=Flask(__name__,static_folder="public",static_url_path="/")
-app.secret_key="member"
 
-connection = mysql.connector.connect(
-host="localhost",
-database="trip",
-user="root",
+
+# app=Flask(__name__,static_folder="public",static_url_path="/")
+app=Flask(__name__,static_folder="static")
+
+
+
+
+
+
+# connection = mysql.connector.connect(
+# host="localhost",
+# database="trip",
+# user="root",
+# password="0000"
+# )
+poolname="pool"
+poolsize=5
+user="root"
+host="localhost"
 password="0000"
-)
+database="trip"
+
+
+
+
+
+
 
 # Pages
 @app.route("/")
@@ -47,8 +66,12 @@ def attractions():
     content={}
     content["data"]=[]
     x=int(page)*12
-    cursor = connection.cursor()
-    try:    
+    
+    
+    try:
+        connectionpool=mysql.connector.pooling.MySQLConnectionPool(pool_name=poolname,pool_reset_session = True,pool_size=poolsize,user=user,host=host,password=password,database=database)
+        connection=connectionpool.get_connection()
+        cursor = connection.cursor() 
         if keyword:
             sql='''select * from location where category=%s or name like concat('%',%s,'%')limit %s,12   '''	
             val=(keyword,keyword,x)
@@ -98,7 +121,9 @@ def attractions():
         res=make_response(json_string,500)
 
     finally:
-        cursor.close()    
+        cursor.close()
+       
+
    
     app.config['JSON_AS_ASCII'] = False
     json_string=jsonify(content)
@@ -113,8 +138,13 @@ def id(attractionID):
     id=attractionID
     content={}
     content["data"]={}  
+  
+    
     try:
-        cursor = connection.cursor()
+        connectionpool=mysql.connector.pooling.MySQLConnectionPool(pool_name=poolname,pool_reset_session = True,pool_size=poolsize,user=user,host=host,password=password,database=database)
+        connection=connectionpool.get_connection()
+        cursor = connection.cursor() 
+        
         sql='''select * from location where id=%s  '''	
         val=(id,)
         cursor.execute(sql,val)
@@ -148,6 +178,7 @@ def id(attractionID):
         res=make_response(json_string,500)
     finally:
         cursor.close()
+        
                     
     return res
     
@@ -158,8 +189,12 @@ def id(attractionID):
 @app.route("/api/categories" , methods=["GET"])
 
 def categories():
+    
+       
         try:
-            cursor = connection.cursor()
+            connectionpool=mysql.connector.pooling.MySQLConnectionPool(pool_name=poolname,pool_reset_session = True,pool_size=poolsize,user=user,host=host,password=password,database=database)
+            connection=connectionpool.get_connection()
+            cursor = connection.cursor() 
             sql='''select distinct `category`  from location  '''	
             cursor.execute(sql)
 
@@ -176,6 +211,7 @@ def categories():
             res=make_response(json_string,500)
         finally:
             cursor.close()
+          
                     
         app.config['JSON_AS_ASCII'] = False
         json_string=jsonify(content)
@@ -183,4 +219,5 @@ def categories():
         return res
 
 
-app.run(host='0.0.0.0', debug=True, port=3000)    
+app.run(host='0.0.0.0',port=3000)    
+# , debug=True

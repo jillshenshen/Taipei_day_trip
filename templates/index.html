@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="" >
+    <!-- google font  setting -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <!-- -- css setting  -- -->
+    <link rel="stylesheet" type= "text/css"  href="{{ url_for('static',filename='styles/style.css') }}">
+  
+    <title>Document</title>
+</head>
+
+<body>
+  
+  <header>
+		<div class="head">
+			<h4>台北一日遊</h4>
+			<nav>
+				<ul>
+					<li>
+						<a href="">預定行程</a>
+					</li>
+					<li>
+						<a href="">登入/註冊</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<main>
+		<section class="page">
+			<div class="content">
+				<h1>輕鬆享受台北一日悠閒</h1>
+				<p>探索每個角落，體驗城市的深度旅遊行程</p>
+				<div class="search">
+					<input class="search-input" id="inp-word" placeholder="輸入景點名稱查詢" type="text"> <button class="search-btn"><img alt="" class="search-img" src="{{url_for('static',filename='images/icon.png')}}"></button>
+				</div>
+				<div class="category">
+					<!-- <a onclick="show(this)" class="catList">藝文館所</a>
+             -->
+				</div>
+			</div>
+		</section>
+		<section class="container">
+			<!-- <div class="second-div first" >
+          <img src="" alt="" class="second-img">
+          <div class="title">
+           <h1 class="title-1">北投圖書館</h1>
+          </div>
+          <div class="mrt">
+           <h1>新北投</h1>
+           <h1>藝文館所</h1>   
+          </div>   
+        </div> -->
+		</section>
+	</main>
+	<footer>
+		<p>COPYRIGHT © 2022 台北一日遊</p>
+	</footer>
+
+</body>
+  
+ 
+
+
+<script>
+
+// fetch景點資料
+let page = 0
+let keyword
+let fetching = false
+const getPage = async () => {
+	fetching = true
+	let container = document.querySelector(".container");
+	if (page === null) {
+		return
+	}
+	let url = ""
+	if (keyword) {
+		url = `/api/attractions?page=${page}&keyword=${keyword}`
+	} else {
+		url = `/api/attractions?page=${page}`
+	}
+	let data = await fetch(url);
+	let parseData = await data.json();
+	if (parseData.data.length !== 0) {
+		let getData = parseData.data;
+		for (let i = 0; i < 12; i++) {
+			let img_url = getData[i].images[0];
+			let name = getData[i].name
+			let mrtData = getData[i].mrt
+			let catData = getData[i].category
+			const secondDiv = document.createElement("div")
+			secondDiv.classList.add("second-div")
+			const secondImg = document.createElement("img")
+			secondImg.classList.add("second-img")
+			secondImg.src = img_url
+			const title = document.createElement("div")
+			title.classList.add("title")
+			const titleH1 = document.createElement("h1")
+			titleH1.classList.add("title-h1")
+			titleH1.innerText = name
+			const mrtDiv = document.createElement("div")
+			mrtDiv.classList.add("mrt")
+			const mrt = document.createElement("h1")
+			mrt.innerText = mrtData
+			const cat = document.createElement("h1")
+			cat.innerText = catData
+			mrtDiv.append(mrt, cat)
+			title.append(titleH1)
+			secondDiv.append(secondImg, title, mrtDiv)
+			container.append(secondDiv)
+		}
+	} else {
+		if (container.innerHTML === '') {
+			const fail = document.createElement("h1")
+			fail.innerText = "沒有搜尋到此景點名稱"
+			fail.style.color = "#757575"
+			fail.style.margin = "50px"
+			container.append(fail)
+		}
+	}
+	page = parseData.nextPage;
+	fetching = false
+}
+// 執行首頁
+getPage(); 
+
+
+// 捲軸設定 
+window.addEventListener("scroll", () => {
+	if (fetching) {
+		return
+	}
+	const {
+		scrollTop,
+		scrollHeight,
+		clientHeight
+	} = document.documentElement;
+	if (clientHeight + scrollTop >= scrollHeight) {
+		getPage()
+	}
+})
+
+
+
+ // search bar button 設定
+ let btn = document.querySelector(".search-btn")
+let input = document.getElementById("inp-word")
+btn.addEventListener("click", async function() {
+	let inpValue = input.value;
+	input.value = ""
+	let container = document.querySelector(".container");
+	container.innerHTML = ``
+	page = 0
+	keyword = inpValue
+	getPage()
+})
+
+
+// category value設定 
+function show(e) {
+	let clickValue = e.text
+	document.getElementById("inp-word").value = clickValue
+}
+
+
+// category html 設定
+let category = document.querySelector(".category")
+
+function setAtt() {
+	for (let i = 0; i < 9; i++) {
+		let moreCat = document.createElement("a")
+		moreCat.classList.add("catList")
+		moreCat.setAttribute("onclick", "show(this);")
+		category.appendChild(moreCat)
+	}
+}
+
+setAtt()
+
+// 取得category資料 
+async function getData() {
+	try {
+		const response = await fetch("/api/categories");
+		const res = await response.json()
+		for (let i = 0; i < 9; i++) {
+			let catList = document.querySelectorAll(".catList")
+			catList[i].innerText = res.data[i]
+		}
+	} catch (err) {
+		console.log("fetch failed:", err)
+	}
+}
+
+getData()
+
+
+     
+// 顯示或隱藏category
+let catList = document.querySelectorAll(".catList")
+document.addEventListener("click", (e) => {
+	if (e.target === input) {
+		category.style.visibility = "visible"
+		for (i = 0; i < catList.length; i++) {
+			catList[i].style.visibility = "visible"
+		}
+	} else {
+		category.style.visibility = "hidden"
+		for (i = 0; i < catList.length; i++) {
+			catList[i].style.visibility = "hidden"
+		}
+	}
+})
+ 
+	
+
+</script>
+</html>
