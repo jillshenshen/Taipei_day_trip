@@ -188,7 +188,7 @@ main section.container div.second-div img.second-img {
 main section.container div.second-div div.title h1.title-h1 {
   position: absolute;
   width: 100%;
-  top: 157px;
+  bottom: 45px;
   max-height: 40px;
   color: #ffffff;
   padding-left: 10px;
