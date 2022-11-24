@@ -180,9 +180,10 @@ main section.container div.second-div {
 }
 main section.container div.second-div img.second-img {
   max-height: 197px;
-  height: 197px;
+  height: 81.405%;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
-  background-size: cover;
 }
 main section.container div.second-div div.title h1.title-h1 {
   position: absolute;
@@ -236,7 +237,13 @@ footer p {
     height: 100%;
   }
 }
-@media screen and (max-width: 600px) and (min-width: 360px) {
+@media screen and (max-width: 680px) and (min-width: 360px) {
+  main section.container {
+    grid-template-columns: 1fr;
+    height: 100%;
+  }
+}
+@media screen and (max-width: 550px) and (min-width: 360px) {
   main section.page div.content div.search input.search-input {
     width: 230px;
   }
@@ -247,9 +254,5 @@ footer p {
   main section.page div.content div.category a.catList {
     padding: 10px;
     margin-right: 20px;
-  }
-  main section.container {
-    grid-template-columns: 1fr;
-    height: 100%;
   }
 }/*# sourceMappingURL=style.css.map */
