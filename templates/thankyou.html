@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;  
+    }
+
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+    }
+    .content{
+        height:400px;
+        width: 750px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .content .images{
+        height: 100%;
+        width:100%
+    }
+
+    .images img{
+        height: 100%;
+        width: 100%;
+    }
+
+    .btn-sliders{
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+    }
+
+    .white{
+        height:12px;
+        width: 12px;
+        background: white;
+        
+        border-radius: 50%;
+        margin: 0 12px;
+        cursor: pointer;
+    }
+    .black{
+        height:12px;
+        width: 12px;
+       
+        border-radius: 50%;
+        background: black;
+        border:1px solid white;
+    }
+
+    .slide-left{
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        width: 36px;
+        height:36px;
+        left:10px; 
+        cursor: pointer; 
+        
+    }
+    .slide-right{
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        width: 36px;
+        height:36px;
+        right:10px;
+        cursor: pointer;
+       
+    }
+
+
+
+
+</style>
+<body>
+    <div class="content">
+        <div class="images">
+            <img src="https://picsum.photos/500/300?random=1" alt="" class="image">
+            <img src="https://picsum.photos/500/300?random=2" alt="" class="image">
+            <img src="https://picsum.photos/500/300?random=3" alt="" class="image">
+            <img src="https://picsum.photos/500/300?random=4" alt="" class="image">
+            <img src="https://picsum.photos/500/300?random=5" alt="" class="image">
+            
+            
+        </div>
+        <div onclick="sideSlide(-1)" class="slide-left">
+            <img src="./leftArrow.png" alt="">
+        </div>
+        <div onclick="sideSlide(1)" class="slide-right">
+            <img src="./rightArrow.png" alt="">
+        </div>
+
+        <div class="btn-sliders">
+            
+            <span  class="white" onClick=btnSlide(1)></span>
+            <span  class="white" onClick=btnSlide(2) ></span>
+            <span  class="white" onClick=btnSlide(3) ></span>
+            <span  class="white" onClick=btnSlide(4)></span>
+            <span  class="white" onClick=btnSlide(5)></span>
+        
+        </div>
+    </div>
+</body>
+<script>
+    let indexValue=1;
+    showImg(indexValue);
+    function btnSlide(e){showImg(indexValue=e)}
+    function sideSlide(e){showImg(indexValue+=e)}
+
+    function showImg(e){
+        let i;
+        const img=document.querySelectorAll(".image");
+        const sliders=document.querySelectorAll(".btn-sliders span")
+        const dot=document.querySelectorAll(".white")
+        if(e>img.length){
+            indexValue=1;
+        }
+        if(e<1){
+            indexValue=img.length
+        }
+
+        for(i=0;i<img.length;i++){
+            img[i].style.display="none"; 
+            dot[i].classList.remove("black")          
+        }
+        // 顯示圖片
+        img[indexValue-1].style.display="block"
+        // 顯示黑點
+        dot[indexValue-1].classList.add("black")
+       
+      
+
+    }
+
+</script>
+
+
+</html>

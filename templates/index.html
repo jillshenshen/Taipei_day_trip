@@ -11,9 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <!-- -- css setting  -- -->
-    <link rel="stylesheet" type= "text/css"  href="{{ url_for('static',filename='styles/style.css') }}">
+    <link rel="stylesheet" type= "text/css"  href="{{ url_for('static',filename='styles/index/style.css') }}">
   
-    <title>Document</title>
+    <title>Taipei day trip </title>
 </head>
 
 <body>
@@ -79,6 +79,7 @@ const getPage = async () => {
 	fetching = true
 	let container = document.querySelector(".container");
 	if (page === null) {
+		console.log("沒資料")
 		return
 	}
 	let url = ""
@@ -89,6 +90,10 @@ const getPage = async () => {
 	}
 	let data = await fetch(url);
 	let parseData = await data.json();
+
+	page = parseData.nextPage;
+	console.log(parseData.nextPage)
+
 	if (parseData.data.length !== 0) {
 		let getData = parseData.data;
 		for (let i = 0; i < 12; i++) {
@@ -96,8 +101,11 @@ const getPage = async () => {
 			let name = getData[i].name
 			let mrtData = getData[i].mrt
 			let catData = getData[i].category
+			let id=getData[i].id
+
 			const secondDiv = document.createElement("div")
 			secondDiv.classList.add("second-div")
+			secondDiv.setAttribute("onclick",`window.open('/attraction/${id}','_self')`)
 			const secondImg = document.createElement("img")
 			secondImg.classList.add("second-img")
 			secondImg.src = img_url
@@ -112,9 +120,12 @@ const getPage = async () => {
 			mrt.innerText = mrtData
 			const cat = document.createElement("h1")
 			cat.innerText = catData
+		
+
 			mrtDiv.append(mrt, cat)
 			title.append(titleH1)
 			secondDiv.append(secondImg, title, mrtDiv)
+			
 			container.append(secondDiv)
 		}
 	} else {
@@ -126,9 +137,12 @@ const getPage = async () => {
 			container.append(fail)
 		}
 	}
-	page = parseData.nextPage;
+	// page = parseData.nextPage;
+	// console.log(parseData.nextPage)
+	
 	fetching = false
 }
+
 // 執行首頁
 getPage(); 
 
@@ -145,6 +159,7 @@ window.addEventListener("scroll", () => {
 	} = document.documentElement;
 	if (clientHeight + scrollTop >= scrollHeight) {
 		getPage()
+		
 	}
 })
 
@@ -218,6 +233,8 @@ document.addEventListener("click", (e) => {
 		}
 	}
 })
+
+
  
 	
 
