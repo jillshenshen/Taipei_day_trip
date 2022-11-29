@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- google font  setting -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+     <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <!-- -- css setting  -- -->
+    <link rel="stylesheet" type= "text/css"  href="{{ url_for('static',filename='styles/attraction/style.css') }}">
+
+    <title>Document</title>
+</head>
+<body>
+    <header>
+		<div class="head">
+			<h4>台北一日遊</h4>
+			<nav>
+				<ul>
+					<li>
+						<a href="">預定行程</a>
+					</li>
+					<li>
+						<a href="">登入/註冊</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+    <hr>
+
+    <main>
+        <section class="container">
+            <div class="left">
+                <div class="images">
+                    <!-- 
+                    <img src="https://picsum.photos/540/406?random=5" alt="" class="image"> -->
+                    
+                  </div>
+                  <div onclick="sideSlide(-1)" class="slide-left">
+                        <img src="{{url_for('static',filename='images/leftArrow.png')}}"alt="">
+                    </div>
+                    <div onclick="sideSlide(1)" class="slide-right">
+                        <img src="{{url_for('static',filename='images/rightArrow.png')}}" alt="">
+                  </div>
+
+                  <div class="btn-sliders">
+                    <!-- 
+                    <span  class="white" onClick=btnSlide(5)></span> -->
+                
+            </div>
+
+
+
+
+            </div>
+          
+
+           <div class="right">
+             <div class="right-content">
+
+             </div>
+             <!-- <h1>平安鐘</h1>
+             <h2>公共藝術 at 忠孝復興</h2> -->
+             <div class="booking">
+                <h1>訂購導覽行程</h1>
+                <h2>以此景點為中心的一日行程，帶你探索城市角落故事</h2>
+
+               
+                 <label for="Date of Birth" class="date">
+                    選擇日期:
+                <input type="date" name="date" placeholder="dd-mm-yyyy">
+                </label>
+                <br>
+                <label for="" class="time">
+                    選擇時間:                        
+                    
+                 <label for="morning" class="radio">
+                    <input type="radio" id="morning" name="expense" value="morning" class="radio_input" checked>
+                    <div class="radio_radio"></div>
+                    上半天   
+    
+                </label>
+    
+                       
+                <label for="afternoon" class="radio" >
+                    <input type="radio" id="afternoon" name="expense" value="afternoon" class="radio_input" >
+                    <div class="radio_radio"></div>                 
+                    下半天
+                   </label><br>   
+                </label>
+                    
+                <h3 >導覽費用:<span class="cost">新台幣2000元</span></h3>                  
+    
+                <button>開始預約行程</button>
+             </div>
+
+
+           </div>
+        
+        </section>
+        <hr class="second">  
+
+        <section class="des">
+            <div>
+                <p class="description"></p>
+
+                <h1>景點地址 :</h1>
+                <h2 class="address"></h2>
+
+                <h1>交通方式 :</h1>
+                <h2 class="transport"></h2>
+            </div>
+
+        </section>
+    </main>
+    <footer>
+		<p>COPYRIGHT © 2022 台北一日遊</p>
+	</footer>
+   
+</body>
+
+<script>
+    let url = window.location.pathname
+    let newUrl = `/api${url}`
+    const getPage = async () => {
+    	let data = await fetch(newUrl);
+    	let parseData = await data.json();
+    	let getData = parseData.data
+    	let img_url = getData.images
+    	for (let i = 0; i < img_url.length; i++) {
+    		const images = document.querySelector(".images")
+    		const image = document.createElement("img")
+    		image.classList.add("image")
+    		image.src = img_url[i]
+    		images.append(image)
+    		let btnSliders = document.querySelector(".btn-sliders")
+    		let span = document.createElement("span")
+    		span.classList.add("white")
+    		if (i == 0) {
+    			span.classList.add("black")
+    		}
+    		span.setAttribute("onclick", `btnSlide(${i+1})`)
+    		btnSliders.append(span)
+    	}
+    	const right = document.querySelector(".right-content")
+    	const description = document.querySelector(".description")
+    	const address = document.querySelector(".address")
+    	const transport = document.querySelector(".transport")
+    	let name = getData.name
+    	let category = getData.category
+    	let mrt = getData.mrt
+    	let des = getData.description
+    	let add = getData.address
+    	let trans = getData.transport
+    	const h1Name = document.createElement("h1")
+    	const mrtName = document.createElement("h2")
+    	h1Name.innerText = name
+    	mrtName.innerText = `${category} at ${mrt}`
+    	right.append(h1Name, mrtName)
+    	description.innerText = des
+    	address.innerText = add
+    	transport.innerText = trans
+    
+    }
+    getPage()
+    let indexValue = 1;
+
+    function btnSlide(e) {
+    	showImg(indexValue = e)
+    }
+
+    function sideSlide(e) {
+    	showImg(indexValue += e)
+    }
+
+    function showImg(e) {
+    	let i;
+    	const img = document.querySelectorAll(".image");
+    	const sliders = document.querySelectorAll(".btn-sliders span")
+    	const dot = document.querySelectorAll(".white")
+    	if (e > img.length) {
+    		indexValue = 1;
+    	}
+    	if (e < 1) {
+    		indexValue = img.length
+    	}
+    	for (i = 0; i < img.length; i++) {
+    		img[i].style.display = "none";
+    		dot[i].classList.remove("black")
+    	}
+    	// 顯示圖片
+    	img[indexValue - 1].style.display = "block"
+    	// 顯示黑點
+    	dot[indexValue - 1].classList.add("black")
+    }
+    let expense = document.querySelectorAll("input[name='expense']")
+    let findSelected = () => {
+    	let cost = document.querySelector(".cost")
+    	let selected = document.querySelector("input[name='expense']:checked")
+    	if (selected.value == "morning") {
+    		cost.innerText = "新台幣2000元"
+    	}
+    	if (selected.value == "afternoon") {
+    		cost.innerText = "新台幣2500元"
+    	}
+    }
+    expense.forEach(expense => {
+    	expense.addEventListener("change", findSelected)
+    })
+   
+</script>
+
+</html>

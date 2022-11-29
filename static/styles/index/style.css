@@ -177,6 +177,7 @@ main section.container div.second-div {
   border-radius: 7px;
   overflow: hidden;
   box-sizing: border-box;
+  cursor: pointer;
 }
 main section.container div.second-div img.second-img {
   max-height: 197px;

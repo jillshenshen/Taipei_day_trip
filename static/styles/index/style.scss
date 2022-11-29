@@ -73,7 +73,7 @@ header{
     
     
         
-    }  
+ }  
    
    
     
@@ -205,6 +205,7 @@ main{
         box-sizing: border-box;
         grid-template-columns: repeat(4,1fr);
         grid-template-rows:242px;
+      
         div.second-div{
             background-size:cover ;
             position: relative;
@@ -214,6 +215,7 @@ main{
             border-radius: 7px;
             overflow: hidden;
             box-sizing: border-box;
+            cursor: pointer;
            
             img.second-img{
                  
