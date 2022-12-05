@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}    
+
+body{
+    height: 100vh;
+    width: 100%;
+    background-color: aquamarine;
+}
+
+.login{
+      background-color: rgba(0, 0, 0, 0.25);
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+}
+
+.login-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    width: 340px;
+    height:275px;
+    border-radius: 6px;
+    padding: 0 15px;
+    box-sizing: border-box;
+
+}
+
+.login-container::before {
+   content:"";
+   position: absolute;
+   left: 0;
+   height: 10px;
+   width: 100%;
+   background-color: #448899;
+   border-radius: 6px 6px 0 0;
+}
+
+.close{
+    position: absolute;
+    right: 17px;
+    top: 30px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.login-container .text{
+    
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    color: #666666;
+    margin-top: 25px;
+    margin-bottom: 15px; 
+  
+   
+}
+
+
+form .data input{ 
+    height: 47px;
+    width:100% ;
+    margin-bottom: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px;
+    
+}
+
+form .data input::placeholder{
+    color: #757575;
+}
+
+form .btn button{
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    width: 100%;
+    height: 47px;
+    font-size: 19px;
+    color: #ffffff;
+    background: #448899;
+    line-height: 36px;
+    text-decoration: none;
+    padding-top:10px 20px 10px 20px  ;
+    border:none;
+    margin-bottom: 10px;
+    cursor: pointer;           
+}
+
+div .forgot{
+    text-align: center;
+    color: #666666;
+   
+   
+}
+a{
+  text-decoration: none;  
+  color: #666666;
+}
+
+
+
+</style>
+<body>
+   
+    <div class="login">
+        <div class="login-container">
+            <img src="./icon_close.png" alt="" class="close">
+            <div class="text">登入會員帳號
+                
+            </div>
+            <form action="#">
+                <div class="data">
+                    
+                    <input type="text" placeholder="輸入電子信箱" required>
+                </div> 
+                <div class="data">
+                    
+                    <input type="password" placeholder="輸入密碼" required>
+                </div> 
+                <div class="btn">
+                    
+                    <button type="submit">登入帳號</button>
+                </div> 
+                <div class="forgot"><span>還沒有帳號?
+                </span><a href="">點此註冊</a></div>
+            </form>
+        </div>
+    </div>
+
+    
+</body>
+</html>
