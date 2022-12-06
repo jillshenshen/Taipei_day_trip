@@ -1,0 +1,268 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC';
+    
+}
+
+:root {
+    --primary-color: #448899;
+    --secondary-color:#666666;
+    --secondary-color-50:#757575;
+    --secondary-color-20:#E8E8E8;
+
+
+  }
+
+  body{
+    max-width: 1920px;
+    margin: auto 0;
+    height: 100%;
+  
+
+    div.login{
+        background-color: rgba(0, 0, 0, 0.25);
+        width: 100%;
+        height: 100vh;     
+        position: fixed;
+        top:0;
+        display: none;
+        justify-items: center;
+        align-items: center;
+        z-index: 99;
+        div.login-container{
+          position: absolute;
+          top: 80px;
+          left: 50%;
+          transform: translate(-50%,-10px);
+          background-color: #fff;
+          width: 340px;
+          height:275px;
+          border-radius: 6px;
+          padding: 0 15px;
+          box-sizing: border-box;
+          .close{
+              position: absolute;
+              right: 17px;
+              top: 30px;
+              cursor: pointer;
+              width: 16px;
+              height: 16px;
+            }
+            div.text{
+              font-size: 24px;
+              font-weight: 700;
+              text-align: center;
+              color: #666666;
+              margin-top: 25px;
+              margin-bottom: 15px; 
+            }
+  
+            div.data input{
+              height: 47px;
+              width:100% ;
+              margin-bottom: 10px;
+              border: 1px solid #cccccc;
+              border-radius: 5px;
+              font-size: 16px;
+              font-weight: 500;
+              padding: 15px;
+            }
+            div.btn button{
+              -webkit-border-radius: 5;
+              -moz-border-radius: 5;
+              border-radius: 5px;
+              width: 100%;
+              height: 47px;
+              font-size: 19px;
+              color: #ffffff;
+              background: #448899;
+              line-height: 36px;
+              text-decoration: none;
+              padding-top:10px 20px 10px 20px  ;
+              border:none;
+              margin-bottom: 10px;
+              cursor: pointer;  
+            }  
+            div.forgot{
+              text-align: center;
+              color: #666666;
+              p.login-message{
+                  display: none;
+              }
+              span.signup-text{
+                  cursor: pointer; 
+              }
+            }
+        }
+  
+  
+        div.login-container::before{
+          content:"";
+          position: absolute;
+          left: 0;
+          height: 10px;
+          width: 100%;
+          background-color: #448899;
+          border-radius: 6px 6px 0 0;
+        }
+        
+  }
+  
+  div.signup{
+     
+      div.login-container{
+          height:332px;
+  
+          div.forgot{
+              p.signup-message{
+                  display: none;
+              }
+              span.login-text{
+                  cursor: pointer; 
+              }
+            }
+      }
+  }
+  
+   
+}
+hr{
+    border: 0.5px solid var(--secondary-color-20)
+}
+
+hr.second{
+    max-width: 1200px;
+    margin: auto;
+    
+}
+
+
+header{
+    max-width: 1920px;
+    height:54px;
+    line-height: 54px;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top:0;
+    z-index: 98;
+    background-color: #ffffff;
+
+    
+    div.head{
+       display: flex;
+       justify-content:space-between ;
+       width: 1200px;
+        h4{
+            font-size: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+     nav{
+        ul{
+            display:flex;
+            justify-content: flex-end;
+            li{
+                list-style-type: none; 
+            }
+                a.list{
+                   display: none;
+               
+                }           
+                    a.show{
+                    margin-left:1rem ; 
+                    list-style-type: none;             
+                    color: var(--secondary-color);
+                    font-size: 16px;
+                    font-weight: 500;
+                    text-align: center;
+                    text-decoration: none;
+                    display: flex;     
+                    cursor: pointer;
+                    }                           
+        }
+    } 
+    }   
+        
+ }  
+
+ main{
+    background-color:rgb(235, 235, 166);
+    max-width: 1200px;
+    margin: 46px auto 180px;
+    height: 100%;
+   
+    h1{
+        font-size: 19px;
+        font-weight: 700;
+        margin-left: 100px;
+        color: var(--secondary-color);
+    }
+    section.booking-area{
+        display: flex;
+        margin:35px 100px 40px 100px;
+        position: relative;
+        background-color: pink;
+        
+        div.booking-pic{
+            height: 200px;
+            width:266px;
+            margin-right: 22px;
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        div.booking-detail{
+            h3{
+                font-size: 16px;
+                font-weight: 700;
+                color: var(--primary-color);
+                margin-bottom: 30px;
+            }
+            h4{
+                font-size: 16px;
+                font-weight:700;
+                color: var(--secondary-color);
+                margin-bottom: 10px;
+            }
+            
+        }
+        div.delete-img{
+            img{
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                right: 0px;
+                top:0px;
+            }
+        }
+    }
+ }
+  
+
+
+
+ footer{
+    
+    background-color: #757575;
+    height: 104px;    
+    margin-bottom: 0;
+    
+    color: #ffffff;
+    text-align: center;
+    line-height: 104px;
+    width: 100%;
+    bottom: 0;
+    p{
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+
+   
+}
