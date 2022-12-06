@@ -8,11 +8,13 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 # from urllib import response
 from flask import Flask ,request,render_template,session,redirect,url_for,make_response,json,Response
 
-from attractions import attraction_bp
-from login import login_bp
+from api.attractions import attraction_bp
+from api.login import login_bp
+from api.booking import booking_bp
 app=Flask(__name__,static_folder="static")
 app.register_blueprint(attraction_bp)
 app.register_blueprint(login_bp)
+app.register_blueprint(booking_bp)
 
 
 

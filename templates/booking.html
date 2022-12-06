@@ -1,155 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- google font  setting -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <!-- -- css setting  -- -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/booking/style.css') }}"
+    />
     <title>Document</title>
-</head>
-<style>
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}    
-
-body{
-    height: 100vh;
-    width: 100%;
-    background-color: aquamarine;
-}
-
-.login{
-      background-color: rgba(0, 0, 0, 0.25);
-      width: 100%;
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      display: flex;
-      justify-items: center;
-      align-items: center;
-}
-
-.login-container{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-color: #fff;
-    width: 340px;
-    height:275px;
-    border-radius: 6px;
-    padding: 0 15px;
-    box-sizing: border-box;
-
-}
-
-.login-container::before {
-   content:"";
-   position: absolute;
-   left: 0;
-   height: 10px;
-   width: 100%;
-   background-color: #448899;
-   border-radius: 6px 6px 0 0;
-}
-
-.close{
-    position: absolute;
-    right: 17px;
-    top: 30px;
-    cursor: pointer;
-    width: 16px;
-    height: 16px;
-}
-
-.login-container .text{
-    
-    font-size: 24px;
-    font-weight: 700;
-    text-align: center;
-    color: #666666;
-    margin-top: 25px;
-    margin-bottom: 15px; 
-  
-   
-}
-
-
-form .data input{ 
-    height: 47px;
-    width:100% ;
-    margin-bottom: 10px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 15px;
-    
-}
-
-form .data input::placeholder{
-    color: #757575;
-}
-
-form .btn button{
-    -webkit-border-radius: 5;
-    -moz-border-radius: 5;
-    border-radius: 5px;
-    width: 100%;
-    height: 47px;
-    font-size: 19px;
-    color: #ffffff;
-    background: #448899;
-    line-height: 36px;
-    text-decoration: none;
-    padding-top:10px 20px 10px 20px  ;
-    border:none;
-    margin-bottom: 10px;
-    cursor: pointer;           
-}
-
-div .forgot{
-    text-align: center;
-    color: #666666;
-   
-   
-}
-a{
-  text-decoration: none;  
-  color: #666666;
-}
-
-
-
-</style>
-<body>
-   
-    <div class="login">
-        <div class="login-container">
-            <img src="./icon_close.png" alt="" class="close">
-            <div class="text">登入會員帳號
-                
-            </div>
-            <form action="#">
-                <div class="data">
-                    
-                    <input type="text" placeholder="輸入電子信箱" required>
-                </div> 
-                <div class="data">
-                    
-                    <input type="password" placeholder="輸入密碼" required>
-                </div> 
-                <div class="btn">
-                    
-                    <button type="submit">登入帳號</button>
-                </div> 
-                <div class="forgot"><span>還沒有帳號?
-                </span><a href="">點此註冊</a></div>
-            </form>
-        </div>
+  </head>
+  <body>
+    <div class="login" id="login">
+      <div class="login-container">
+        <img
+          src="{{url_for('static',filename='images/icon_close.png')}}"
+          alt=""
+          class="close"
+        />
+        <div class="text">登入會員帳號</div>
+        <form>
+          <div class="data">
+            <input
+              type="email"
+              name="email"
+              placeholder="輸入電子信箱"
+              class="login-email"
+              required
+            />
+          </div>
+          <div class="data">
+            <input
+              type="password"
+              name="password"
+              placeholder="輸入密碼"
+              class="login-password"
+              required
+            />
+          </div>
+          <div class="btn">
+            <button type="submit" class="login-submit">登入帳號</button>
+          </div>
+          <div class="forgot">
+            <p class="login-message"></p>
+            <span>還沒有帳號? </span><span class="signup-text">點此註冊</span>
+          </div>
+        </form>
+      </div>
     </div>
 
-    
-</body>
+    <div class="login signup" id="signup">
+      <div class="login-container" id="signup-container">
+        <img
+          src="{{url_for('static',filename='images/icon_close.png')}}"
+          alt=""
+          class="close close-signup"
+        />
+        <div class="text">註冊會員帳號</div>
+        <form>
+          <div class="data">
+            <input
+              type="text"
+              name="name"
+              placeholder="輸入姓名"
+              class="signup-name"
+              required
+            />
+          </div>
+          <div class="data">
+            <input
+              type="email"
+              name="email"
+              placeholder="輸入電子信箱"
+              class="signup-email"
+              required
+            />
+          </div>
+          <div class="data">
+            <input
+              type="password"
+              name="password"
+              placeholder="輸入密碼"
+              class="signup-password"
+              required
+            />
+          </div>
+          <div class="btn">
+            <button type="submit" class="signup-submit">註冊新帳號</button>
+          </div>
+          <div class="forgot">
+            <p class="signup-message"></p>
+            <span>已經有帳戶了? </span><span class="login-text">點此登入</span>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <header>
+      <div class="head">
+        <h4 onclick="javascript:location.href='/'">台北一日遊</h4>
+        <nav>
+          <ul>
+            <!-- <li>
+                          <a class="member list">會員頁面</a>
+                      </li> -->
+            <li>
+              <a class="booking list">預定行程</a>
+            </li>
+            <li class="nav-list">
+              <a class="nav list"
+                ><span class="login-btn">登入 </span
+                ><span class="signup-btn">/註冊</span></a
+              >
+            </li>
+            <li>
+              <a class="logout-btn list" onclick="logout()">登出系統</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <hr />
+
+    <main>
+      <h1>你好，yakko，待預定的行程如下：</h1>
+      <section class="booking-area">
+        <div class="booking-pic">
+          <img src="https://picsum.photos/500/300" alt="" />
+        </div>
+        <div class="booking-detail">
+          <h3>台北一日遊：平安鐘</h3>
+          <h4>日期：</h4>
+          <h4>時間：</h4>
+          <h4>費用：</h4>
+          <h4>地點：</h4>
+        </div>
+        <div class="delete-img">
+          <img
+            src="{{url_for('static',filename='images/icon_delete.png')}}"
+            alt=""
+          />
+        </div>
+      </section>
+      <section class="booking-area">
+        <div class="booking-pic">
+          <img src="https://picsum.photos/500/300" alt="" />
+        </div>
+        <div class="booking-detail">
+          <h3>台北一日遊：平安鐘</h3>
+          <h4>日期：</h4>
+          <h4>時間：</h4>
+          <h4>費用：</h4>
+          <h4>地點：</h4>
+        </div>
+        <div class="delete-img">
+          <img
+            src="{{url_for('static',filename='images/icon_delete.png')}}"
+            alt=""
+          />
+        </div>
+      </section>
+
+      <section class="contact">
+        <h1>你的聯絡資訊</h1>
+      </section>
+
+      <section class="payment">
+        <h1>信用卡付款資訊</h1>
+      </section>
+    </main>
+
+    <footer>
+      <p>COPYRIGHT © 2022 台北一日遊</p>
+    </footer>
+  </body>
+
+  <script src="{{ url_for('static',filename='js/login.js') }}"></script>
 </html>
