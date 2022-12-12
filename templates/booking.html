@@ -1,190 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- google font  setting -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
-    <!-- -- css setting  -- -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static',filename='styles/booking/style.css') }}"
-    />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="login" id="login">
-      <div class="login-container">
+{% extends "base.html" %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='styles/booking/style.css') }}"
+/>
+
+{% endblock %} {% block title %}
+<title>預定行程</title>
+{% endblock %} {% block body %}
+<main>
+  <h1 class="title"></h1>
+  <section class="booking-section">
+    <!-- <div class="booking-area">
+      <div class="booking-pic">
+        <link rel="preload" href="https://picsum.photos/400/300?random=1" />
+      </div>
+      <div class="booking-detail">
+        <h3>台北一日遊：平安鐘</h3>
+        <h4>日期：</h4>
+        <h4>時間：</h4>
+
+        <h4>費用：<span>2000元</span></h4>
+        <h4>地點：</h4>
+      </div>
+      <div class="delete-img">
         <img
-          src="{{url_for('static',filename='images/icon_close.png')}}"
+          src="{{url_for('static',filename='images/icon_delete.png')}}"
           alt=""
-          class="close"
         />
-        <div class="text">登入會員帳號</div>
-        <form>
-          <div class="data">
-            <input
-              type="email"
-              name="email"
-              placeholder="輸入電子信箱"
-              class="login-email"
-              required
-            />
-          </div>
-          <div class="data">
-            <input
-              type="password"
-              name="password"
-              placeholder="輸入密碼"
-              class="login-password"
-              required
-            />
-          </div>
-          <div class="btn">
-            <button type="submit" class="login-submit">登入帳號</button>
-          </div>
-          <div class="forgot">
-            <p class="login-message"></p>
-            <span>還沒有帳號? </span><span class="signup-text">點此註冊</span>
-          </div>
-        </form>
+      </div>
+    </div> -->
+  </section>
+
+  <section class="isBooking">
+    <hr class="second" />
+
+    <div class="contact">
+      <h2>你的聯絡資訊</h2>
+      <div>
+        <label for="contactName">聯絡姓名: </label>
+        <input type="text" name="contactName" />
+      </div>
+      <div>
+        <label for="contactEmail"> 連絡信箱:</label>
+        <input type="email" name="contactEmail" />
+      </div>
+      <div>
+        <label for="contactPhone">手機號碼:</label>
+        <input type="tel" name="contactPhone" required />
+      </div>
+      <h2>
+        請保持手機暢通，準時到達，導覽人員將用手機與你聯繫，務必留下正確的聯絡方式。
+      </h2>
+    </div>
+    <hr class="second" />
+
+    <div class="contact">
+      <h2>信用卡付款資訊</h2>
+      <div>
+        <label for="credit">卡片號碼: </label>
+        <input type="" name="credit" placeholder="**** **** **** ****" />
+      </div>
+      <div>
+        <label for="credit-time">日期時間:</label>
+        <input type="email" name="credit-time" placeholder="MM/YY" />
+      </div>
+      <div>
+        <label for="credit-password">驗證密碼:</label>
+        <input type="tel" name="credit-password" placeholder="CVV" />
       </div>
     </div>
-
-    <div class="login signup" id="signup">
-      <div class="login-container" id="signup-container">
-        <img
-          src="{{url_for('static',filename='images/icon_close.png')}}"
-          alt=""
-          class="close close-signup"
-        />
-        <div class="text">註冊會員帳號</div>
-        <form>
-          <div class="data">
-            <input
-              type="text"
-              name="name"
-              placeholder="輸入姓名"
-              class="signup-name"
-              required
-            />
-          </div>
-          <div class="data">
-            <input
-              type="email"
-              name="email"
-              placeholder="輸入電子信箱"
-              class="signup-email"
-              required
-            />
-          </div>
-          <div class="data">
-            <input
-              type="password"
-              name="password"
-              placeholder="輸入密碼"
-              class="signup-password"
-              required
-            />
-          </div>
-          <div class="btn">
-            <button type="submit" class="signup-submit">註冊新帳號</button>
-          </div>
-          <div class="forgot">
-            <p class="signup-message"></p>
-            <span>已經有帳戶了? </span><span class="login-text">點此登入</span>
-          </div>
-        </form>
+    <hr class="second" />
+    <div class="pay">
+      <p class="totalCost"></p>
+      <div>
+        <button>確認訂購並付款</button>
       </div>
     </div>
+  </section>
+</main>
 
-    <header>
-      <div class="head">
-        <h4 onclick="javascript:location.href='/'">台北一日遊</h4>
-        <nav>
-          <ul>
-            <!-- <li>
-                          <a class="member list">會員頁面</a>
-                      </li> -->
-            <li>
-              <a class="booking list">預定行程</a>
-            </li>
-            <li class="nav-list">
-              <a class="nav list"
-                ><span class="login-btn">登入 </span
-                ><span class="signup-btn">/註冊</span></a
-              >
-            </li>
-            <li>
-              <a class="logout-btn list" onclick="logout()">登出系統</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+{% endblock %} {% block script %}
+<script src="{{ url_for('static',filename='js/login.js') }}"></script>
 
-    <hr />
-
-    <main>
-      <h1>你好，yakko，待預定的行程如下：</h1>
-      <section class="booking-area">
-        <div class="booking-pic">
-          <img src="https://picsum.photos/500/300" alt="" />
-        </div>
-        <div class="booking-detail">
-          <h3>台北一日遊：平安鐘</h3>
-          <h4>日期：</h4>
-          <h4>時間：</h4>
-          <h4>費用：</h4>
-          <h4>地點：</h4>
-        </div>
-        <div class="delete-img">
-          <img
-            src="{{url_for('static',filename='images/icon_delete.png')}}"
-            alt=""
-          />
-        </div>
-      </section>
-      <section class="booking-area">
-        <div class="booking-pic">
-          <img src="https://picsum.photos/500/300" alt="" />
-        </div>
-        <div class="booking-detail">
-          <h3>台北一日遊：平安鐘</h3>
-          <h4>日期：</h4>
-          <h4>時間：</h4>
-          <h4>費用：</h4>
-          <h4>地點：</h4>
-        </div>
-        <div class="delete-img">
-          <img
-            src="{{url_for('static',filename='images/icon_delete.png')}}"
-            alt=""
-          />
-        </div>
-      </section>
-
-      <section class="contact">
-        <h1>你的聯絡資訊</h1>
-      </section>
-
-      <section class="payment">
-        <h1>信用卡付款資訊</h1>
-      </section>
-    </main>
-
-    <footer>
-      <p>COPYRIGHT © 2022 台北一日遊</p>
-    </footer>
-  </body>
-
-  <script src="{{ url_for('static',filename='js/login.js') }}"></script>
-</html>
+<script src="{{ url_for('static',filename='js/booking.js') }}"></script>
+{% endblock %}

@@ -1,563 +1,542 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Noto Sans TC';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans TC';
 }
 
 :root {
-    --primary-color: #448899;
-    --secondary-color:#666666;
-    --secondary-color-50:#757575;
-    --secondary-color-20:#E8E8E8;
-
-
+  --primary-color: #448899;
+  --secondary-color: #666666;
+  --secondary-color-50: #757575;
+  --secondary-color-20: #e8e8e8;
 }
 
-body{
-    max-width: 1920px;
-    margin: auto 0;
-    height: 100%;
-
-    div.login{
-        background-color: rgba(0, 0, 0, 0.25);
-        width: 100%;
-        height: 100vh;     
-        position: fixed;
-        top:0;
-        display: none;
-        justify-items: center;
-        align-items: center;
-        z-index: 99;
-        div.login-container{
-          position: absolute;
-          top: 80px;
-          left: 50%;
-          transform: translate(-50%,-10px);
-          background-color: #fff;
-          width: 340px;
-          height:275px;
-          border-radius: 6px;
-          padding: 0 15px;
-          box-sizing: border-box;
-          .close{
-              position: absolute;
-              right: 17px;
-              top: 30px;
-              cursor: pointer;
-              width: 16px;
-              height: 16px;
-            }
-            div.text{
-              font-size: 24px;
-              font-weight: 700;
-              text-align: center;
-              color: #666666;
-              margin-top: 25px;
-              margin-bottom: 15px; 
-            }
-  
-            div.data input{
-              height: 47px;
-              width:100% ;
-              margin-bottom: 10px;
-              border: 1px solid #cccccc;
-              border-radius: 5px;
-              font-size: 16px;
-              font-weight: 500;
-              padding: 15px;
-            }
-            div.btn button{
-              -webkit-border-radius: 5;
-              -moz-border-radius: 5;
-              border-radius: 5px;
-              width: 100%;
-              height: 47px;
-              font-size: 19px;
-              color: #ffffff;
-              background: #448899;
-              line-height: 36px;
-              text-decoration: none;
-              padding-top:10px 20px 10px 20px  ;
-              border:none;
-              margin-bottom: 10px;
-              cursor: pointer;  
-            }  
-            div.forgot{
-              text-align: center;
-              color: #666666;
-              p.login-message{
-                  display: none;
-              }
-              span.signup-text{
-                  cursor: pointer; 
-              }
-            }
-        }
-  
-  
-        div.login-container::before{
-          content:"";
-          position: absolute;
-          left: 0;
-          height: 10px;
-          width: 100%;
-          background-color: #448899;
-          border-radius: 6px 6px 0 0;
-        }
-        
-  }
-  
-  div.signup{
-     
-      div.login-container{
-          height:332px;
-  
-          div.forgot{
-              p.signup-message{
-                  display: none;
-              }
-              span.login-text{
-                  cursor: pointer; 
-              }
-            }
-      }
-  }
-  
-   
-}
-hr{
-    border: 0.5px solid var(--secondary-color-20)
-}
-
-hr.second{
-    max-width: 1200px;
-    margin: auto;
-    
-}
-
-
-header{
-    max-width: 1920px;
-    height:54px;
-    line-height: 54px;
-    display: flex;
-    justify-content: center;
-    position: sticky;
-    top:0;
-    z-index: 98;
-    background-color: #ffffff;
-
-    
-    div.head{
-       display: flex;
-       justify-content:space-between ;
-       width: 1200px;
-        h4{
-            font-size: 30px;
-            font-weight: 700;
-            cursor: pointer;
-            color: var(--primary-color);
-        }
-     nav{
-        ul{
-            display:flex;
-            justify-content: flex-end;
-            li{
-                list-style-type: none; 
-            }
-                a.list{
-                   display: none;
-               
-                }           
-                    a.show{
-                    margin-left:1rem ; 
-                    list-style-type: none;             
-                    color: var(--secondary-color);
-                    font-size: 16px;
-                    font-weight: 500;
-                    text-align: center;
-                    text-decoration: none;
-                    display: flex;     
-                    cursor: pointer;
-                    }                           
-        }
-    } 
-    }   
-        
- }  
-
- section.container{
-    height: 100%;
-    margin:auto;
-    margin-top:37px ;
-    margin-bottom: 50px;
-    max-width:1200px ;
-    display: flex;
-    
-    gap: 30px;
-    div.left{
-        height:406px;
-        width: 540px;
-        overflow: hidden;
-        position: relative;
-        div.images{
-            height: 100%;
-            width:100%
-           
-        }
-        img.image{
-            object-fit: cover;
-            height: 100%;
-            width:100%;
-            border-radius: 5px;
-        }
-        div.slide-left{
-            position: absolute;
-            top:50%;
-            transform: translateY(-50%);
-            width: 36px;
-            height:36px;
-            left:10px; 
-            cursor: pointer; 
-        }
-        div.slide-right{
-            position: absolute;
-            top:50%;
-            transform: translateY(-50%);
-            width: 36px;
-            height:36px;
-            right:10px;
-            cursor: pointer;
-        }
-
-        div.btn-sliders{
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-
-        span.white{
-            height:12px;
-            width: 12px;
-            background: white;
-            
-            border-radius: 50%;
-            margin: 0 12px;
-            cursor: pointer;
-        }
-        span.black{
-            height:12px;
-            width: 12px;
-       
-            border-radius: 50%;
-            background: black;
-            border:1px solid white;
-        }
-      }
-
-    }
-
-    div.right{
-        width: 50%;
-       
-        div.right-content{
-            h1{
-                font-size: 24px;
-                font-weight: 700;
-                color: var(--secondary-color);
-                margin-bottom: 15px;
-              }
-              h2{
-                  font-size: 16px;
-                  font-weight: 500;
-                  color: var(--secondary-color); 
-                  margin-bottom: 20px; 
-              }
-
-        }
-       
-
-        div.booking{
-            color: var(--secondary-color);
-            
-            padding: 15px 20px 0 20px;
-            border-radius: 5px;
-            width: 100%;
-            height: 310px;
-            background-color: var(--secondary-color-20);
-            h1{
-                font-size: 16px;
-                font-weight: 700;
-               
-                margin-bottom: 15px;
-            }
-            h2{
-                font-size: 16px;
-                font-weight: 500 !important;
-                margin-bottom: 24px;
-            }
-            label.date{
-                font-weight: 700;
-            }
-            input[type="date"]{
-                margin-left: 5px;
-               width: 193px;
-               height: 35px;
-               padding: 5px 10px;
-               font-size: 16px;
-               font-family:  'Noto Sans TC';
-               border: none;
-               
-            }
-            label.time{
-                 font-weight: 700;
-              
-
-                label.radio{
-                    display: inline-flex;
-                    align-items: center;
-                    cursor: pointer;
-                    margin-right: 10px;
-                    margin-top: 24px;
-                    margin-bottom: 15px;
-                    
-                    input.radio_input{
-                        visibility: hidden;
-                    }
-                  
-    
-                    div.radio_radio{
-                       
-                        width: 22px;
-                        height: 22px;
-                        border-radius: 50%;
-                        background-color: #ffffff;  
-                        margin-right: 10px;
-                        box-sizing: border-box;
-                        padding: 2px;
-                       
-                    }
-                    div.radio_radio::after{
-                        content: "";
-                        width: 100%;
-                        height: 100%;
-                        display: block;
-                        background-color: #448899;
-                        border-radius: 50%;
-                        transform: scale(0); 
-                    }
-                 
-                    input.radio_input:checked + div.radio_radio::after{
-                        transform: scale(1); 
-                    }
-                   
-
-                    
-
-
-                }
-
-            }
-
-        
-          
-
-            h3{
-                font-size: 16px; 
-                font-weight: 700 ;
-                margin-bottom: 25px;
-                span{
-                    margin-left: 5px;
-                    font-size: 16px;
-                    font-weight: 500;
-
-                }
-                
-            }
-
-            button{
-                -webkit-border-radius: 5;
-                -moz-border-radius: 5;
-                border-radius: 5px;
-                width: 154px;
-                height: 36px;
-                color: #ffffff;
-                font-size: 19px;
-                line-height: 36px;
-                background: #448899;
-                padding-top:10px 20px 10px 20px  ;
-                text-decoration: none;
-                margin-bottom: 41px;
-                border:none;
-                cursor: pointer;
-            }
-
-            
-        }
-
-
-    }
-
-    
-    
- }
-
- section.des{
-    height: 100%;
-    margin:50px auto 120px ;
-    max-width:1200px ;
-    font-size: 16px;
-    color: var(--secondary-color);
-    margin-bottom: 120px;
-    p{
-        margin-bottom: 20px;
-        font-weight: 400;
-    }
-    h1{
-        font-size: 16px;
-        font-weight: 700;
-        
-    }   
-    h2{
-        font-size: 16px;
-        font-weight: 400;
-        margin-bottom: 20px;
-    }  
-
-
- }
-
-
-
-
-
-
-
-
-
-
-
-
- footer{
-    
-    background-color: #757575;
-    height: 104px;    
-    margin-bottom: 0;
-    
-    color: #ffffff;
-    text-align: center;
-    line-height: 104px;
+body {
+  max-width: 1920px;
+  margin: auto 0;
+  height: 100%;
+  div.submit {
+    background-color: rgba(0, 0, 0, 0.25);
     width: 100%;
-    bottom: 0;
-    p{
-        font-size: 16px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    display: none;
+    justify-items: center;
+    align-items: center;
+    z-index: 99;
+    div.submit-container {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translate(-50%, -10px);
+      background-color: #fff;
+      width: 340px;
+      height: 200px;
+      border-radius: 6px;
+      padding: 0 15px;
+      box-sizing: border-box;
+      .submit-close {
+        position: absolute;
+        right: 17px;
+        top: 30px;
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+      }
+      div.submit-message {
+        font-size: 24px;
         font-weight: 700;
+        text-align: center;
+        color: #666666;
+        margin-top: 25px;
+        margin-bottom: 15px;
+      }
+      div.schedule {
+        text-align: center;
+        img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+    div.submit-container::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      height: 10px;
+      width: 100%;
+      background-color: #448899;
+      border-radius: 6px 6px 0 0;
+    }
+  }
+
+  div.login {
+    background-color: rgba(0, 0, 0, 0.25);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    display: none;
+    justify-items: center;
+    align-items: center;
+    z-index: 99;
+    div.login-container {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translate(-50%, -10px);
+      background-color: #fff;
+      width: 340px;
+      height: 275px;
+      border-radius: 6px;
+      padding: 0 15px;
+      box-sizing: border-box;
+      .close {
+        position: absolute;
+        right: 17px;
+        top: 30px;
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+      }
+      div.text {
+        font-size: 24px;
+        font-weight: 700;
+        text-align: center;
+        color: #666666;
+        margin-top: 25px;
+        margin-bottom: 15px;
+      }
+
+      div.data input {
+        height: 47px;
+        width: 100%;
+        margin-bottom: 10px;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 15px;
+      }
+      div.btn button {
+        -webkit-border-radius: 5;
+        -moz-border-radius: 5;
+        border-radius: 5px;
+        width: 100%;
+        height: 47px;
+        font-size: 19px;
+        color: #ffffff;
+        background: #448899;
+        line-height: 36px;
+        text-decoration: none;
+        padding-top: 10px 20px 10px 20px;
+        border: none;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+      div.forgot {
+        text-align: center;
+        color: #666666;
+        p.login-message {
+          display: none;
+        }
+        span.signup-text {
+          cursor: pointer;
+        }
+      }
     }
 
+    div.login-container::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      height: 10px;
+      width: 100%;
+      background-color: #448899;
+      border-radius: 6px 6px 0 0;
+    }
+  }
 
-   
+  div.signup {
+    div.login-container {
+      height: 332px;
+
+      div.forgot {
+        p.signup-message {
+          display: none;
+        }
+        span.login-text {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+hr {
+  border: 0.5px solid var(--secondary-color-20);
 }
 
-@media screen and (max-width: 1200px) and (min-width:900px) {
+hr.second {
+  max-width: 1200px;
+  margin: auto;
+}
 
-    header{
-      div.head{
-          width:90%;
+header {
+  max-width: 1920px;
+  height: 54px;
+  line-height: 54px;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 98;
+  background-color: #ffffff;
+
+  div.head {
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    h4 {
+      font-size: 30px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--primary-color);
+    }
+    nav {
+      ul {
+        display: flex;
+        justify-content: flex-end;
+        li {
+          list-style-type: none;
+        }
+        a.list {
+          display: none;
+        }
+        a.show {
+          margin-left: 1rem;
+          list-style-type: none;
+          color: var(--secondary-color);
+          font-size: 16px;
+          font-weight: 500;
+          text-align: center;
+          text-decoration: none;
+          display: flex;
+          cursor: pointer;
+        }
       }
-    }  
-  
-  
-      section.container{
-          width:90%;
-         
-          height: 100%;
-  
+    }
+  }
+}
+
+section.container {
+  height: 100%;
+  margin: auto;
+  margin-top: 37px;
+  margin-bottom: 50px;
+  max-width: 1200px;
+  display: flex;
+
+  gap: 30px;
+  div.left {
+    height: 406px;
+    width: 540px;
+    overflow: hidden;
+    position: relative;
+    div.images {
+      height: 100%;
+      width: 100%;
+    }
+    img.image {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+      border-radius: 5px;
+    }
+    div.slide-left {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      left: 10px;
+      cursor: pointer;
+    }
+    div.slide-right {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      right: 10px;
+      cursor: pointer;
+    }
+
+    div.btn-sliders {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+
+      span.white {
+        height: 12px;
+        width: 12px;
+        background: white;
+
+        border-radius: 50%;
+        margin: 0 12px;
+        cursor: pointer;
+      }
+      span.black {
+        height: 12px;
+        width: 12px;
+
+        border-radius: 50%;
+        background: black;
+        border: 1px solid white;
+      }
+    }
+  }
+
+  div.right {
+    width: 50%;
+
+    div.right-content {
+      h1 {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--secondary-color);
+        margin-bottom: 15px;
+      }
+      h2 {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--secondary-color);
+        margin-bottom: 20px;
       }
     }
 
-    section.des{
-        width: 90%;
+    div.booking {
+      color: var(--secondary-color);
+
+      padding: 15px 20px 0 20px;
+      border-radius: 5px;
+      width: 100%;
+      height: 310px;
+      background-color: var(--secondary-color-20);
+      h1 {
+        font-size: 16px;
+        font-weight: 700;
+
+        margin-bottom: 15px;
+      }
+      h2 {
+        font-size: 16px;
+        font-weight: 500 !important;
+        margin-bottom: 24px;
+      }
+      label.date {
+        font-weight: 700;
+      }
+      input[type='date'] {
+        margin-left: 5px;
+        width: 193px;
+        height: 35px;
+        padding: 5px 10px;
+        font-size: 16px;
+        font-family: 'Noto Sans TC';
+        border: none;
+      }
+      label.time {
+        font-weight: 700;
+
+        label.radio {
+          display: inline-flex;
+          align-items: center;
+          cursor: pointer;
+          margin-right: 10px;
+          margin-top: 24px;
+          margin-bottom: 15px;
+
+          input.radio_input {
+            visibility: hidden;
+          }
+
+          div.radio_radio {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            margin-right: 10px;
+            box-sizing: border-box;
+            padding: 2px;
+          }
+          div.radio_radio::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            display: block;
+            background-color: #448899;
+            border-radius: 50%;
+            transform: scale(0);
+          }
+
+          input.radio_input:checked + div.radio_radio::after {
+            transform: scale(1);
+          }
+        }
+      }
+
+      h3 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        span {
+          margin-left: 5px;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+
+      button {
+        -webkit-border-radius: 5;
+        -moz-border-radius: 5;
+        border-radius: 5px;
+        width: 154px;
+        height: 36px;
+        color: #ffffff;
+        font-size: 19px;
+        line-height: 36px;
+        background: #448899;
+        padding-top: 10px 20px 10px 20px;
+        text-decoration: none;
+        margin-bottom: 41px;
+        border: none;
+        cursor: pointer;
+      }
     }
-    hr.second{
+  }
+}
+
+section.des {
+  height: 100%;
+  margin: 50px auto 120px;
+  max-width: 1200px;
+  font-size: 16px;
+  color: var(--secondary-color);
+  margin-bottom: 120px;
+  p {
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  h1 {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  h2 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+}
+
+footer {
+  background-color: #757575;
+  height: 104px;
+  margin-bottom: 0;
+
+  color: #ffffff;
+  text-align: center;
+  line-height: 104px;
+  width: 100%;
+  bottom: 0;
+  p {
+    font-size: 16px;
+    font-weight: 700;
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 900px) {
+  header {
+    div.head {
+      width: 90%;
+    }
+  }
+
+  section.container {
+    width: 90%;
+
+    height: 100%;
+  }
+}
+
+section.des {
+  width: 90%;
+}
+hr.second {
+  width: 100%;
+  margin: auto;
+}
+
+@media screen and (max-width: 900px) and (min-width: 453px) {
+  header {
+    div.head {
+      width: 90%;
+    }
+  }
+
+  main {
+    section.container {
+      flex-wrap: wrap;
+      height: 100%;
+      width: 90%;
+      div.left {
         width: 100%;
         margin: auto;
-    }
-  
-  
-    
-  
-  
-  
-  
-  
-  @media screen and (max-width: 900px) and (min-width:453px) {
-    header{
-        div.head{
-            width:90%;
-        }
-      }  
+      }
 
-     main{
-      section.container{
-          flex-wrap: wrap;
-          height: 100%;
-          width: 90%;
-          div.left{
-            width: 100%;
-            margin: auto;
-          }
-
-          div.right{
-            width: 100%;
-            margin: auto;
-          }
-     
+      div.right {
+        width: 100%;
+        margin: auto;
       }
     }
-   }
-      
+  }
+}
 
+@media screen and (max-width: 453px) and (min-width: 360px) {
+  header {
+    div.head {
+      width: 90%;
+    }
+  }
 
-   @media screen and (max-width: 453px) and (min-width:360px) {
-    header{
-        div.head{
-            width:90%;
-        }
-      }  
+  main {
+    section.container {
+      flex-wrap: wrap;
+      height: 100%;
+      width: 100%;
+      margin-top: 0px;
+      div.left {
+        width: 100%;
+        height: 350px;
+        margin: auto;
+      }
 
-     main{
-      section.container{
-          flex-wrap: wrap;
-          height: 100%;
-          width: 100%;
-          margin-top: 0px;
-          div.left{
-            width: 100%;
-            height: 350px;
-            margin: auto;
-          }
-
-          div.right{
-            width: 90%;
-            margin: auto;
-            div.booking{
-                h2{
-                    margin-bottom: 15px;
-                }
-            }
-          }
-
-          button{
+      div.right {
+        width: 90%;
+        margin: auto;
+        div.booking {
+          h2 {
             margin-bottom: 15px;
           }
-     
+        }
+      }
+
+      button {
+        margin-bottom: 15px;
       }
     }
-   }
-    
-      
-    
-  
-  
+  }
+}

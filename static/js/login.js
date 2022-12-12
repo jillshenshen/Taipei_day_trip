@@ -33,11 +33,12 @@ loginText.addEventListener('click', () => {
   document.querySelector('.signup-message').style.display = 'none';
   document.getElementById('signup-container').style.height = '332px';
 });
+
 /* ---------------------fetch signup註冊 api-------------------------- */
 const signupSubmit = document.querySelector('.signup-submit');
-let signupName = document.querySelector('.signup-name');
-let signupEmail = document.querySelector('.signup-email');
-let signupPassword = document.querySelector('.signup-password');
+const signupName = document.querySelector('.signup-name');
+const signupEmail = document.querySelector('.signup-email');
+const signupPassword = document.querySelector('.signup-password');
 signupSubmit.addEventListener('click', (e) => {
   e.preventDefault();
   let signupNameVl = signupName.value;
@@ -63,19 +64,15 @@ signupSubmit.addEventListener('click', (e) => {
         document.querySelector('.signup-message').style.display = 'block';
         document.querySelector('.signup-message').innerText = '註冊會員成功';
         document.querySelector('.signup-message').style.color = '#FF6464';
-        document.querySelector('.signup-message').style.backgroundColor =
-          '#FDFDBD';
+
         document.getElementById('signup-container').style.height = '360px';
-        check();
       } else {
         document.querySelector('.signup-message').style.display = 'block';
         document.querySelector('.signup-message').innerText =
           '註冊會員失敗,請提供其他E-mail';
         document.querySelector('.signup-message').style.color = '#68B984';
-        document.querySelector('.signup-message').style.backgroundColor =
-          '#FDFDBD';
+
         document.getElementById('signup-container').style.height = '360px';
-        check();
       }
     });
 });
@@ -113,8 +110,7 @@ loginSubmit.addEventListener('click', (e) => {
         document.querySelector('.login-message').style.display = 'block';
         document.querySelector('.login-message').innerText =
           '會員登入失敗,帳號或密碼錯誤';
-        document.querySelector('.login-message').style.backgroundColor =
-          '#FDFDBD';
+
         document.querySelector('.login-message').style.color = '#68B984';
         document.querySelector('.login-container').style.height = '300px';
       }
@@ -127,28 +123,41 @@ function logout() {
   })
     .then((response) => response.json())
     .then(function (result) {
-      check();
+      window.open('/', '_self');
     });
 }
 
-function check() {
-  fetch('/api/user/auth')
-    .then((response) => response.json())
-    .then(function (result) {
-      console.log(result.data);
-      if (result.data) {
-        booking.classList.add('show');
-        nav.classList.remove('show');
-        logoutBtn.classList.add('show');
-      } else {
-        booking.classList.add('show');
-        nav.classList.add('show');
-        logoutBtn.classList.remove('show');
-      }
-    });
+/* -----------------------確認登入與否,顯示登入登出鍵-------------------------- */
+let nameData;
+let emailData;
+
+async function check() {
+  const response = await fetch('/api/user/auth');
+  const result = await response.json();
+  if (result.data) {
+    nameData = result.data.name;
+    emailData = result.data.email;
+
+    booking.classList.add('show');
+    nav.classList.remove('show');
+    logoutBtn.classList.add('show');
+  } else {
+    booking.classList.add('show');
+    nav.classList.add('show');
+    logoutBtn.classList.remove('show');
+  }
 }
+
 check();
 
-function booking_to() {
-  window.open('/booking', '_self');
+/* --------------------預定行程 button 確認是否登入------------------- */
+
+async function booking_to() {
+  const response = await fetch('/api/user/auth');
+  const result = await response.json();
+  if (result.data) {
+    window.open('/booking', '_self');
+  } else {
+    document.getElementById('login').style.display = 'flex';
+  }
 }
