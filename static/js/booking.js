@@ -140,6 +140,10 @@ function deleteThis(id) {
   })
     .then((response) => response.json())
     .then((result) => {
-      window.open('/booking', '_self');
+      if (result.ok) {
+        window.open('/booking', '_self');
+      } else {
+        window.open('/', '_self');
+      }
     });
 }
