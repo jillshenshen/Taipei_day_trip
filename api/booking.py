@@ -34,7 +34,7 @@ def booking():
     time=request.json["time"]
     price=request.json["price"]
     now = datetime.now()
-    two_days_from_now = now + timedelta(days=2) 
+    two_days_from_now = now + timedelta(days=1) 
     
  
 
