@@ -7,9 +7,9 @@
 
 :root {
   --primary-color: #448899;
-  --secondary-color:#666666;
-  --secondary-color-50:#757575;
-  --secondary-color-20:#E8E8E8;
+  --secondary-color: #666666;
+  --secondary-color-50: #757575;
+  --secondary-color-20: #e8e8e8;
 }
 
 body {
@@ -164,9 +164,8 @@ header div.head nav ul a.show {
 }
 
 main {
-  background-color: rgb(235, 235, 166);
   max-width: 1200px;
-  margin: 46px auto 180px;
+  margin: 46px auto 62px;
   height: 100%;
 }
 main h1 {
@@ -175,47 +174,111 @@ main h1 {
   margin-left: 100px;
   color: var(--secondary-color);
 }
-main section.booking-area {
-  display: flex;
-  margin: 35px 100px 40px 100px;
-  position: relative;
-  background-color: pink;
+main section.booking-section img.booking-now {
+  margin-left: 100px;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
 }
-main section.booking-area div.booking-pic {
+main div.booking-area {
+  display: flex;
+  margin: 35px 100px 50px 100px;
+  position: relative;
+}
+main div.booking-area div.booking-pic {
   height: 200px;
   width: 266px;
+  min-width: 266px;
   margin-right: 22px;
 }
-main section.booking-area div.booking-pic img {
+main div.booking-area div.booking-pic img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-main section.booking-area div.booking-detail h3 {
+main div.booking-area div.booking-detail {
+  margin-right: 30px;
+}
+main div.booking-area div.booking-detail h3 {
   font-size: 16px;
   font-weight: 700;
   color: var(--primary-color);
   margin-bottom: 30px;
 }
-main section.booking-area div.booking-detail h4 {
+main div.booking-area div.booking-detail h4 {
   font-size: 16px;
   font-weight: 700;
   color: var(--secondary-color);
   margin-bottom: 10px;
 }
-main section.booking-area div.delete-img img {
+main div.booking-area div.booking-detail h4 span {
+  font-size: 16px;
+  font-weight: 500;
+}
+main div.booking-area div.delete-img img {
   width: 30px;
   height: 30px;
   position: absolute;
   right: 0px;
   top: 0px;
+  cursor: pointer;
+}
+main section.isBooking {
+  display: none;
+}
+main section.isBooking div.contact {
+  margin: 35px 100px 40px 100px;
+}
+main section.isBooking div.contact h2 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--secondary-color);
+  margin-bottom: 24px;
+}
+main section.isBooking div.contact label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--secondary-color);
+}
+main section.isBooking div.contact input {
+  width: 200px;
+  height: 38px;
+  margin-bottom: 15px;
+  border: 1px solid var(--secondary-color-20);
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px;
+}
+main section.isBooking div.pay {
+  text-align: end;
+}
+main section.isBooking div.pay p {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--secondary-color);
+  margin: 43px 0 25px 0;
+}
+main section.isBooking div.pay button {
+  border-radius: 5px;
+  width: 173px;
+  height: 36px;
+  color: #ffffff;
+  font-size: 19px;
+  line-height: 16px;
+  background: #448899;
+  padding-top: 10px 20px 10px 20px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
 }
 
 footer {
   background-color: #757575;
   height: 104px;
   margin-bottom: 0;
+  position: absolute;
   color: #ffffff;
   text-align: center;
   line-height: 104px;
@@ -225,4 +288,61 @@ footer {
 footer p {
   font-size: 16px;
   font-weight: 700;
+}
+
+@media screen and (max-width: 1200px) and (min-width: 750px) {
+  header div.head {
+    width: 90%;
+  }
+  div.pay {
+    padding-right: 5%;
+  }
+}
+@media screen and (max-width: 750px) and (min-width: 450px) {
+  header div.head {
+    width: 90%;
+  }
+  main h1 {
+    margin-left: 50px;
+  }
+  main section.booking-section div.booking-area {
+    flex-direction: column;
+    margin: 35px 50px 50px 50px;
+  }
+  main section.booking-section div.booking-area div.booking-pic {
+    width: 100%;
+  }
+  main section.booking-section div.booking-area div.delete-img img {
+    top: 380px;
+  }
+  main section.isBooking div.contact {
+    margin: 35px 50px 40px 50px;
+  }
+  main div.pay {
+    padding-right: 5%;
+  }
+}
+@media screen and (max-width: 450px) and (min-width: 360px) {
+  header div.head {
+    width: 90%;
+  }
+  main h1 {
+    margin-left: 10px;
+  }
+  main section.booking-section div.booking-area {
+    flex-direction: column;
+    margin: 35px 10px 50px 10px;
+  }
+  main section.booking-section div.booking-area div.booking-pic {
+    width: 100%;
+  }
+  main section.booking-section div.booking-area div.delete-img img {
+    top: 380px;
+  }
+  main section.isBooking div.contact {
+    margin: 35px 10px 40px 10px;
+  }
+  main div.pay {
+    padding-right: 5%;
+  }
 }/*# sourceMappingURL=style.css.map */

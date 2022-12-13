@@ -9,7 +9,7 @@ import json ,jwt
 import mysql.connector
 from mysql.connector import Error,pooling
 from flask import current_app
-import secret
+import secret as secret
 
 login_bp=Blueprint("login",__name__,static_folder="static")
 

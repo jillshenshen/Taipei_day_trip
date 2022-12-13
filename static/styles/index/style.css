@@ -7,8 +7,8 @@
 
 :root {
   --primary-color: #448899;
-  --secondary-color:#666666;
-  --secondary-color-50:#757575;
+  --secondary-color: #666666;
+  --secondary-color-50: #757575;
 }
 
 body {
@@ -222,6 +222,7 @@ main section.page div.content div.search button.search-btn {
   background-color: #448899;
   border: none;
   border-radius: 0 5px 5px 0;
+  cursor: pointer;
 }
 main section.page div.content div.search button.search-btn img.search-img {
   width: 30px;
@@ -236,10 +237,11 @@ main section.page div.content div.category {
   border-radius: 5px;
   z-index: 6;
   background-color: #ffffff;
-  top: 226px;
+  top: 228px;
   color: #000000;
   max-width: 400px;
   visibility: hidden;
+  box-shadow: 3px 3px 3px #666666;
 }
 main section.page div.content div.category a.catList {
   visibility: hidden;
