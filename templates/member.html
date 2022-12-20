@@ -1,0 +1,110 @@
+{% extends "base.html" %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='styles/member/style.css') }}"
+/>
+
+{% endblock %} {% block title %}
+<title>會員頁面</title>
+{% endblock %} {% block body %}
+<main class="member-main">
+  <div class="member-id first">
+    <div class="member-pic">
+      <img
+        src="{{url_for('static',filename='images/user.png')}}"
+        alt=""
+        onclick="fileActive()"
+        id="user-img"
+      />
+    </div>
+    <input type="file" id="file" accept="image/*" / hidden>
+
+    <h2 class="member-name"></h2>
+    <button class="allBtn member-btn" onclick="fileActive()">上傳照片</button>
+  </div>
+  
+  <div class="member-id second">
+    <h1>帳號設定</h1>
+    <hr />
+
+    <div class="field">
+      <div class="input-field">
+        <label for="">名<span> *</span></label>
+        <input type="text" 
+        class="input-1 input-name" required />
+      </div>
+      <div class="input-field">
+        <label for="">姓 <span> *</span></label>
+        <input type="text"
+        class="input-1" required />
+      </div>
+      <div class="input-field">
+        <label for="gender">性別</label>
+        <select name="gender" id="">
+          <option value="female">女性</option>
+          <option value="male">男性</option>
+        </select>
+      </div>
+
+      <div class="input-field">
+        <label for="">英文名</label>
+        <input type="text"   />
+      </div>
+      <div class="input-field">
+        <label for="">英文姓</label>
+        <input type="text"  />
+      </div>
+      <div class="input-field">
+        <label for="">護照號碼</label>
+        <input type="text"  />
+      </div>
+
+      <div class="input-field ">
+        <label for="">出生日期</label>
+        <input type="date" />
+      </div>
+      <div class="input-field">
+        <label for="">國家/地區</label>
+        <input type="text" />
+      </div>
+
+      <div class="input-field "  id="tel-input">
+        <label for="">電話號碼<span> *</span></label>
+        <input type="tel"  required />
+      </div>
+      <div class="input-field" id="email-input">
+        <label for="">聯絡Email<span> *</span></label>
+        <input type="email" class="input-1 input-2 input-email"required />
+      </div>
+
+    </div>
+    
+    <div class="user-save">
+        <button class="allBtn user-submit" >儲存</button>
+    </div> 
+    
+
+   
+    </div>
+  </div>
+
+  <div class="member-id third">
+    <h2>訂單管理</h2>
+    <hr>
+    <img
+    src="{{url_for('static',filename='images/task.png')}}"
+    alt=""
+    class="task-img"
+  />
+    <div>
+      <button class="allBtn task-btn">查看訂單</button>
+    </div>
+   
+  </div>
+</main>
+
+{% endblock %} {% block script %}
+
+<script src="{{ url_for('static',filename='js/member.js') }}"></script>
+{% endblock %}

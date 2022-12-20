@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="" />
+
     <!-- google font  setting -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +13,12 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{url_for('static',filename='images/favicon.ico')}}"
+    />
+
     <!-- -- css setting  -- -->
     {% block css %} {% endblock %} {% block title %} {% endblock %}
   </head>
@@ -108,11 +114,22 @@
         <h4 onclick="javascript:location.href='/'">台北一日遊</h4>
         <nav>
           <ul>
-            <!-- <li>
-						<a class="member list">會員頁面</a>
-					</li> -->
             <li>
-              <a class="booking list" onclick="booking_to()">預定行程</a>
+              <img
+                src="{{url_for('static',filename='images/account.png')}}"
+                alt=""
+                class="account"
+                onclick="member()"
+              />
+            </li>
+
+            <li>
+              <img
+                src="{{url_for('static',filename='images/shopping-cart.png')}}"
+                alt=""
+                class="cart booking list"
+                onclick="booking_to()"
+              />
             </li>
             <li class="nav-list">
               <a class="nav list"
@@ -134,6 +151,9 @@
       <p>COPYRIGHT © 2022 台北一日遊</p>
     </footer>
   </body>
+  <script src="{{ url_for('static',filename='js/login.js') }}"></script>
 
-  {% block script %} {% endblock %}
+  {% block script %} 
+ 
+  {% endblock %}
 </html>

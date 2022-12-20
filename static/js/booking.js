@@ -17,6 +17,7 @@ booking_check();
 /* -------------------------抓取資料------------------------ */
 const bookingSection = document.querySelector('.booking-section');
 let totalCost = 0;
+let tripObj = [];
 
 function get_data() {
   fetch('/api/booking')
@@ -25,6 +26,7 @@ function get_data() {
     })
     .then((result) => {
       let array = result.data;
+
       const title = document.querySelector('.title');
       title.innerText = `你好，${nameData}，待預定的行程如下：`;
 
@@ -33,6 +35,21 @@ function get_data() {
       } else {
         Booking();
         array.forEach((e) => {
+          let { id, name, address, image } = e.attraction;
+          let { date, time } = e;
+          let obj = {
+            id: id,
+            name: name,
+            address: address,
+            image: image,
+          };
+          let obj2 = {
+            attraction: obj,
+            date: date,
+            time: time,
+          };
+          tripObj.push(obj2);
+
           const area = document.createElement('div');
           area.classList.add('booking-area');
           const pic = document.createElement('div');
@@ -42,27 +59,27 @@ function get_data() {
           const deleteImg = document.createElement('div');
           deleteImg.classList.add('delete-img');
           const img = document.createElement('img');
-          img.src = e.attraction.image;
+          img.src = image;
           img.setAttribute(
             'onclick',
-            `window.open('/attraction/${e.attraction.id}','_self')`
+            `window.open('/attraction/${id}','_self')`
           );
           img.style.cursor = 'pointer';
 
           const detailTitle = document.createElement('h3');
-          detailTitle.innerText = `台北一日遊： ${e.attraction.name}`;
+          detailTitle.innerText = `台北一日遊： ${name}`;
 
           const detailDate = document.createElement('h4');
           detailDate.innerText = '日期：';
           const dateSpan = document.createElement('span');
-          dateSpan.innerText = e.date;
+          dateSpan.innerText = date;
           detailDate.append(dateSpan);
 
           const detailTime = document.createElement('h4');
           detailTime.innerText = '時間：';
           const timeSpan = document.createElement('span');
           timeSpan.innerText =
-            e.time == 'morning' ? '早上9點到中午12點' : '下午1點到下午4點';
+            time == 'morning' ? '早上9點到中午12點' : '下午1點到下午4點';
           detailTime.append(timeSpan);
 
           const detailCost = document.createElement('h4');
@@ -75,7 +92,7 @@ function get_data() {
           const detailAddress = document.createElement('h4');
           detailAddress.innerText = ' 地點：';
           const addressSpan = document.createElement('span');
-          addressSpan.innerText = e.attraction.address;
+          addressSpan.innerText = address;
           detailAddress.append(addressSpan);
 
           const deleteIcon = document.createElement('img');
@@ -94,6 +111,8 @@ function get_data() {
           area.append(pic, detail, deleteImg);
           bookingSection.append(area);
         });
+
+        console.log(tripObj);
 
         document.querySelector(
           '.totalCost'
@@ -146,4 +165,154 @@ function deleteThis(id) {
         window.open('/', '_self');
       }
     });
+}
+
+/* ----------------------TapPay串接設定------------------------ */
+TPDirect.setupSDK(
+  126892,
+  'app_kob1LK4ila5XS2Gb1KxejJzwxfkgpWTLRM3I0qje5lRSyXELDYBsOpcoAKnf',
+  'sandbox'
+);
+
+let fields = {
+  number: {
+    // css selector
+    element: '#card-number',
+    placeholder: '**** **** **** ****',
+  },
+  expirationDate: {
+    // DOM object
+    element: document.getElementById('card-expiration-date'),
+    placeholder: 'MM / YY',
+  },
+  ccv: {
+    element: '#card-ccv',
+    placeholder: '後三碼',
+  },
+};
+
+TPDirect.card.setup({
+  fields: fields,
+  styles: {
+    // Style all elements
+    input: {
+      color: 'gray',
+    },
+    // Styling ccv field
+    'input.ccv': {
+      'font-size': '16px',
+    },
+    // Styling expiration-date field
+    'input.expiration-date': {
+      'font-size': '16px',
+    },
+    // Styling card-number field
+    'input.card-number': {
+      'font-size': '16px',
+    },
+    // style focus state
+    ':focus': {
+      color: 'black',
+    },
+    // style valid state
+    '.valid': {
+      color: 'green',
+    },
+    // style invalid state
+    '.invalid': {
+      color: 'red',
+    },
+    // Media queries
+    // Note that these apply to the iframe, not the root window.
+    '@media screen and (max-width: 400px)': {
+      input: {
+        color: 'orange',
+      },
+    },
+  },
+  // 此設定會顯示卡號輸入正確後，會顯示前六後四碼信用卡卡號
+  isMaskCreditCardNumber: true,
+  maskCreditCardNumberRange: {
+    beginIndex: 6,
+    endIndex: 11,
+  },
+});
+
+const submitButton = document.querySelector('.submit-button');
+
+TPDirect.card.onUpdate(function (update) {
+  // update.canGetPrime === true
+  // --> you can call TPDirect.card.getPrime()
+  if (update.canGetPrime) {
+    // Enable submit Button to get prime.
+    submitButton.removeAttribute('disabled');
+  } else {
+    // Disable submit Button to get prime.
+    submitButton.setAttribute('disabled', true);
+  }
+
+});
+
+/* -------------------付款button------------- */
+
+submitButton.addEventListener('click', (e) => {
+  document.querySelector('.submit').style.display = 'flex';
+  document.querySelector('.schedule').style.visibility = 'visible';
+
+  e.preventDefault();
+  // 取得 TapPay Fields 的 status
+  const tappayStatus = TPDirect.card.getTappayFieldsStatus();
+
+  // 確認是否可以 getPrime
+  if (tappayStatus.canGetPrime === false) {
+    alert('can not get prime');
+    return;
+  }
+
+  // Get prime
+  let prime = '';
+  TPDirect.card.getPrime(function (result) {
+    if (result.status !== 0) {
+      console.err('getPrime 錯誤');
+
+      return;
+    } else {
+      prime = result.card.prime;
+
+      fetch('/api/orders', {
+        method: 'POST',
+        body: JSON.stringify({
+          prime: prime,
+          order: {
+            price: totalCost,
+            trip: tripObj,
+          },
+          contact: {
+            name: document.querySelector('input[name="contactName"]').value,
+            email: document.querySelector('input[name="contactEmail"]').value,
+            phone: document.querySelector('input[name="contactPhone"]').value,
+          },
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+        .then((response) => response.json())
+        .then(function (result) {
+          if (result.error) {
+            document.querySelector('.submit-message').style.visibility =
+              'visible';
+            document.querySelector('.schedule').style.visibility = 'hidden';
+          } else {
+            let order_number = result.data.number;
+            window.open(`/thankyou?number=${order_number}`, '_self');
+          }
+        });
+    }
+  });
+});
+
+function close_error() {
+  document.querySelector('.submit').style.display = 'none';
+  document.querySelector('.submit-message').style.visibility = 'hidden';
 }

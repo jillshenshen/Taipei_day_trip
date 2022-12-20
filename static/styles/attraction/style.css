@@ -45,8 +45,8 @@ body div.submit div.submit-container .submit-close {
   right: 17px;
   top: 30px;
   cursor: pointer;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 }
 body div.submit div.submit-container div.submit-message {
   font-size: 24px;
@@ -100,8 +100,8 @@ body div.login div.login-container .close {
   right: 17px;
   top: 30px;
   cursor: pointer;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 }
 body div.login div.login-container div.text {
   font-size: 24px;
@@ -192,9 +192,9 @@ header div.head {
 }
 header div.head h4 {
   font-size: 30px;
-  font-weight: 700;
+  font-weight: 1000;
+  color: #448899;
   cursor: pointer;
-  color: var(--primary-color);
 }
 header div.head nav ul {
   display: flex;
@@ -202,6 +202,21 @@ header div.head nav ul {
 }
 header div.head nav ul li {
   list-style-type: none;
+}
+header div.head nav ul img.account {
+  width: 25px;
+  height: 25px;
+  margin-top: 15px;
+  margin-right: 8px;
+  cursor: pointer;
+  display: none;
+}
+header div.head nav ul img.cart {
+  width: 25px;
+  height: 25px;
+  margin-top: 15px;
+  cursor: pointer;
+  display: none;
 }
 header div.head nav ul a.list {
   display: none;
@@ -216,6 +231,9 @@ header div.head nav ul a.show {
   text-decoration: none;
   display: flex;
   cursor: pointer;
+}
+header div.head nav ul img.show-icon {
+  display: flex;
 }
 
 section.container {
@@ -281,7 +299,7 @@ section.container div.left div.btn-sliders span.black {
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  background: black;
+  background: var(--primary-color);
   border: 1px solid white;
 }
 section.container div.right {

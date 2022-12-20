@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='styles/404/style.css') }}"
+/>
+
+{% endblock %} {% block title %} <title>找不到此分頁</title>{% endblock %} {%
+block body %}
+<div class="error-div">
+  <img src="{{url_for('static',filename='images/404.png')}}" alt="" />
+  <h1>你要找的頁面從世界上消失了</h1>
+  <button class="back-btn">回首頁</button>
+</div>
+
+{% endblock %} {% block script %}
+<script>
+  const backBtn = document.querySelector('.back-btn');
+  backBtn.addEventListener('click', () => {
+    window.open('/', '_self');
+  });
+</script>
+
+{% endblock %}

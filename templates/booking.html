@@ -37,51 +37,95 @@
 
     <div class="contact">
       <h2>你的聯絡資訊</h2>
-      <div>
-        <label for="contactName">聯絡姓名: </label>
-        <input type="text" name="contactName" />
-      </div>
-      <div>
-        <label for="contactEmail"> 連絡信箱:</label>
-        <input type="email" name="contactEmail" />
-      </div>
-      <div>
-        <label for="contactPhone">手機號碼:</label>
-        <input type="tel" name="contactPhone" required />
-      </div>
-      <h2>
-        請保持手機暢通，準時到達，導覽人員將用手機與你聯繫，務必留下正確的聯絡方式。
-      </h2>
-    </div>
-    <hr class="second" />
 
-    <div class="contact">
-      <h2>信用卡付款資訊</h2>
-      <div>
-        <label for="credit">卡片號碼: </label>
-        <input type="" name="credit" placeholder="**** **** **** ****" />
-      </div>
-      <div>
-        <label for="credit-time">日期時間:</label>
-        <input type="email" name="credit-time" placeholder="MM/YY" />
-      </div>
-      <div>
-        <label for="credit-password">驗證密碼:</label>
-        <input type="tel" name="credit-password" placeholder="CVV" />
-      </div>
+      
+        <div>
+          <label for="contactName">聯絡姓名: </label>
+          <input type="text" name="contactName" />
+        </div>
+        <div>
+          <label for="contactEmail"> 連絡信箱:</label>
+          <input type="email" name="contactEmail" />
+        </div>
+        <div>
+          <label for="contactPhone">手機號碼:</label>
+          <input type="tel" name="contactPhone" class="contactPhone" required/>
+        </div>
+
+        <h2>
+          請保持手機暢通，準時到達，導覽人員將用手機與你聯繫，務必留下正確的聯絡方式。
+        </h2>
     </div>
-    <hr class="second" />
-    <div class="pay">
-      <p class="totalCost"></p>
-      <div>
-        <button>確認訂購並付款</button>
+      <hr class="second" />
+  
+      <div class="contact">
+        <h2>信用卡付款資訊</h2>
+  
+        <div class="card-container" >
+  
+          <div class="card-div">
+            <label for="credit">卡片號碼: </label>
+  
+            <div class="tpfield" id="card-number">
+            </div>
+  
+          </div>
+         
+        <div class="card-div">
+          <label for="credit-time">日期時間:</label>
+        <div class="tpfield" id="card-expiration-date"></div>
+        </div>
+  
+        
+  
+        <div class="card-div">
+          <label for="credit-password">驗證密碼:</label>
+        <div class="tpfield" id="card-ccv"></div>
+        </div>
+  
+        
       </div>
-    </div>
+  
+  
+
+      <div class="pay">
+        
+        <p class="totalCost"></p>
+        <div>
+          <button disabled type="button" class="submit-button">
+            確認訂購並付款
+          </button>
+        </div>
+      </div>
+
+    
   </section>
+
+  
 </main>
+<div class="submit">
+  <div class="submit-container">
+    <img
+      src="{{url_for('static',filename='images/icon_close.png')}}"
+      alt=""
+      class="submit-close"
+      onclick="close_error()"
+    />
+    <div class="submit-message">請輸入正確聯絡資訊</div>
+    <div class="schedule">
+
+      <figure>
+        <img src="{{url_for('static',filename='images/loading.gif')}}" />
+      </figure>
+      
+    </div>
+  </div>
+</div>
 
 {% endblock %} {% block script %}
-<script src="{{ url_for('static',filename='js/login.js') }}"></script>
+
+
+<script src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0"></script>
 
 <script src="{{ url_for('static',filename='js/booking.js') }}"></script>
 {% endblock %}

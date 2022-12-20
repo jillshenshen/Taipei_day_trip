@@ -42,8 +42,8 @@ body {
         right: 17px;
         top: 30px;
         cursor: pointer;
-        width: 16px;
-        height: 16px;
+        width: 20px;
+        height: 20px;
       }
       div.submit-message {
         font-size: 24px;
@@ -98,8 +98,8 @@ body {
         right: 17px;
         top: 30px;
         cursor: pointer;
-        width: 16px;
-        height: 16px;
+        width: 20px;
+        height: 20px;
       }
       div.text {
         font-size: 24px;
@@ -200,10 +200,12 @@ header {
     width: 1200px;
     h4 {
       font-size: 30px;
-      font-weight: 700;
+      font-weight: 1000;
+      color: #448899;
       cursor: pointer;
-      color: var(--primary-color);
     }
+
+   
     nav {
       ul {
         display: flex;
@@ -211,6 +213,23 @@ header {
         li {
           list-style-type: none;
         }
+        img.account {
+          width: 25px;
+          height: 25px;
+          margin-top: 15px;
+          margin-right: 8px;
+          cursor: pointer;
+          display: none;
+        }
+
+        img.cart {
+          width: 25px;
+          height: 25px;
+          margin-top: 15px;
+          cursor: pointer;
+          display: none;
+        }
+
         a.list {
           display: none;
         }
@@ -224,6 +243,9 @@ header {
           text-decoration: none;
           display: flex;
           cursor: pointer;
+        }
+        img.show-icon {
+          display: flex;
         }
       }
     }
@@ -294,7 +316,7 @@ section.container {
         width: 12px;
 
         border-radius: 50%;
-        background: black;
+        background: var(--primary-color);
         border: 1px solid white;
       }
     }
