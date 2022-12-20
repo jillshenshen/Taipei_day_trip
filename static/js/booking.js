@@ -250,7 +250,6 @@ TPDirect.card.onUpdate(function (update) {
     // Disable submit Button to get prime.
     submitButton.setAttribute('disabled', true);
   }
-
 });
 
 /* -------------------付款button------------- */
@@ -302,6 +301,8 @@ submitButton.addEventListener('click', (e) => {
           if (result.error) {
             document.querySelector('.submit-message').style.visibility =
               'visible';
+            document.querySelector('.submit-message').innerText =
+              result.message;
             document.querySelector('.schedule').style.visibility = 'hidden';
           } else {
             let order_number = result.data.number;
