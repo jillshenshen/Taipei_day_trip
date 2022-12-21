@@ -131,6 +131,8 @@ function logout() {
 let nameData;
 let emailData;
 
+const account = document.querySelector('.account');
+
 async function check() {
   const response = await fetch('/api/user/auth');
   const result = await response.json();
@@ -138,13 +140,15 @@ async function check() {
     nameData = result.data.name;
     emailData = result.data.email;
 
-    booking.classList.add('show');
+    booking.classList.add('show-icon');
+    account.classList.add('show-icon');
     nav.classList.remove('show');
     logoutBtn.classList.add('show');
   } else {
-    booking.classList.add('show');
+    booking.classList.add('show-icon');
     nav.classList.add('show');
     logoutBtn.classList.remove('show');
+    account.classList.remove('show-icon');
   }
 }
 
@@ -159,5 +163,15 @@ async function booking_to() {
     window.open('/booking', '_self');
   } else {
     document.getElementById('login').style.display = 'flex';
+  }
+}
+
+async function member() {
+  const response = await fetch('/api/user/auth');
+  const result = await response.json();
+  if (result.data) {
+    window.open('/member', '_self');
+  } else {
+    document.querySelector('.account').style.display = 'flex';
   }
 }

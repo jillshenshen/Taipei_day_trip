@@ -15,6 +15,7 @@ body {
   max-width: 1920px;
   margin: auto 0;
   height: 100%;
+ 
 }
 
 div.login {
@@ -43,8 +44,8 @@ div.login {
       right: 17px;
       top: 30px;
       cursor: pointer;
-      width: 16px;
-      height: 16px;
+      width: 20px;
+      height: 20px;
     }
     div.text {
       font-size: 24px;
@@ -136,10 +137,20 @@ header {
     width: 1200px;
     h4 {
       font-size: 30px;
-      font-weight: 700;
-      color: var(--primary-color);
+      font-weight: 1000;
+      color: #448899;
       cursor: pointer;
     }
+
+    // @supports (background-clip: text) {
+    //   h4 {
+    //     background-image: url('/static/images/pic.jpg');
+    //     background-clip: text;
+    //     background-size: 100% 100%;
+    //     color: transparent;
+    //   }
+    // }
+
     nav {
       ul {
         display: flex;
@@ -147,6 +158,23 @@ header {
         li {
           list-style-type: none;
         }
+        img.account {
+          width: 25px;
+          height: 25px;
+          margin-top: 15px;
+          margin-right: 8px;
+          cursor: pointer;
+          display: none;
+        }
+
+        img.cart {
+          width: 25px;
+          height: 25px;
+          margin-top: 15px;
+          cursor: pointer;
+          display: none;
+        }
+
         a.list {
           display: none;
         }
@@ -161,12 +189,16 @@ header {
           display: flex;
           cursor: pointer;
         }
+        img.show-icon {
+          display: flex;
+        }
       }
     }
   }
 }
 
 main {
+
   section.page {
     display: flex;
     justify-content: center;
@@ -288,6 +320,7 @@ main {
       overflow: hidden;
       box-sizing: border-box;
       cursor: pointer;
+      transform: scale(1);
 
       img.second-img {
         max-height: 197px;
@@ -295,6 +328,7 @@ main {
         object-fit: cover;
         width: 100%;
       }
+
       div.title {
         h1.title-h1 {
           position: absolute;

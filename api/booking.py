@@ -157,7 +157,7 @@ def get_booking():
                     att["id"]=i[0];
                     att["name"]=i[1];
                     att["address"]=i[2];
-                    att["image"]=(i[3].split(","))[1]
+                    att["image"]=(i[3].split(","))[-1]
                   
                     data["attraction"]=att
                     data["date"]=i[4]
