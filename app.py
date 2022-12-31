@@ -32,7 +32,11 @@ def thankyou():
 
 @app.route("/member")
 def member():
-    return render_template("member.html")   
+    return render_template("member.html") 
+
+@app.route("/order")
+def orderList():
+    return render_template("order.html")   
 
 @app.errorhandler(404)
 def error_date(error):

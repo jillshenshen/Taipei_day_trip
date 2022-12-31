@@ -11,6 +11,13 @@
 <main>
   <h1 class="title"></h1>
   <section class="booking-section">
+    <div class="load">
+      <img
+        src="{{url_for('static',filename='images/loading.gif')}}"
+        alt=""
+        class="load-img"
+      />
+    </div>
     <!-- <div class="booking-area">
       <div class="booking-pic">
         <link rel="preload" href="https://picsum.photos/400/300?random=1" />
@@ -50,6 +57,7 @@
         <div>
           <label for="contactPhone">手機號碼:</label>
           <input type="tel" name="contactPhone" class="contactPhone" required/>
+          <label for="" class="failMessage"></label>
         </div>
 
         <h2>

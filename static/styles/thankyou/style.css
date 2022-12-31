@@ -1,0 +1,120 @@
+div.thank-div {
+  text-align: center;
+}
+div.thank-div img {
+  width: 100px;
+  height: 100px;
+}
+div.thank-div h1 {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--secondary-color-50);
+  margin-bottom: 30px;
+}
+div.thank-div div.order-area {
+  margin: auto;
+  text-align: left;
+  width: 50%;
+}
+div.thank-div div.order-area h2 {
+  color: var(--secondary-color);
+  font-size: 20px;
+  margin-bottom: 3px;
+  background-color: #f5f5f5;
+}
+div.thank-div div.order-area h2 span {
+  color: var(--primary-color);
+  font-weight: 1000;
+}
+div.thank-div div.order-area p {
+  font-size: 16px;
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+div.thank-div div.order-area p span {
+  color: var(--primary-color);
+}
+div.thank-div div.order-area div.booking-area {
+  display: flex;
+  margin-bottom: 5px;
+  position: relative;
+}
+div.thank-div div.order-area div.booking-area div.booking-pic {
+  height: 135px;
+  width: 180px;
+  min-width: 180px;
+  margin-right: 12px;
+}
+div.thank-div div.order-area div.booking-area div.booking-pic img {
+  height: 100%;
+  width: 100%;
+  border-radius: 3px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+div.thank-div div.order-area div.booking-area div.booking-detail {
+  margin-right: 12px;
+}
+div.thank-div div.order-area div.booking-area div.booking-detail h3 {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--secondary-color);
+  margin-bottom: 3px;
+}
+div.thank-div div.order-area div.booking-area div.booking-detail h4 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--secondary-color);
+  margin-bottom: 3px;
+}
+div.thank-div h1 {
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+div.thank-div button {
+  border-radius: 5px;
+  width: 100px;
+  height: 36px;
+  font-size: 19px;
+  color: #ffffff;
+  background: #448899;
+  line-height: 36px;
+  text-decoration: none;
+  padding-top: 10px 20px 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+div.thank-div button:enabled:hover {
+  background-color: #fff;
+  color: #448899;
+  border: 2px solid #448899;
+  transition: 0.5s;
+}
+
+@media screen and (max-width: 1200px) and (min-width: 360px) {
+  header div.head {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 900px) and (min-width: 600px) {
+  div.thank-div div.order-area {
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+    width: 80%;
+  }
+}
+@media screen and (max-width: 600px) and (min-width: 360px) {
+  div.thank-div div.order-area {
+    width: 95%;
+  }
+  div.thank-div div.order-area div.booking-area {
+    flex-direction: column;
+  }
+  div.thank-div div.order-area div.booking-area div.booking-pic {
+    width: 100%;
+  }
+}/*# sourceMappingURL=style.css.map */

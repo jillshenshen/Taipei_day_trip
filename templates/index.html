@@ -5,15 +5,9 @@
   href="{{ url_for('static',filename='styles/index/style.css') }}"
 />
 
-
-{% endblock %} 
-
-{% block title %}
-    <title>台北一日遊</title>
-{% endblock %}
-   
-
-{% block body %}
+{% endblock %} {% block title %}
+<title>台北一日遊</title>
+{% endblock %} {% block body %}
 <main>
   <section class="page">
     <div class="content">
@@ -40,6 +34,14 @@
       </div>
     </div>
   </section>
+  <div class="load-div">
+    <img
+      src="{{url_for('static',filename='images/loading.gif')}}"
+      alt=""
+      class="load-img"
+    />
+  </div>
+
   <section class="container">
     <!-- <div class="second-div first" >
       <img src="" alt="" class="second-img">
@@ -52,6 +54,14 @@
       </div>   
     </div> -->
   </section>
+
+  <div class="load">
+    <img
+      src="{{url_for('static',filename='images/loading.gif')}}"
+      alt=""
+      class="load-img"
+    />
+  </div>
 </main>
 
 {% endblock %} {% block script %}

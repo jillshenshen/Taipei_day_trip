@@ -19,7 +19,7 @@ poolname="pool"
 poolsize=5
 user="root"
 host="localhost"
-password="0000"
+password=secret.MYSQL_KEY
 database="trip"
 
 connectionpool=mysql.connector.pooling.MySQLConnectionPool(pool_name=poolname,pool_reset_session = True,pool_size=poolsize,user=user,host=host,password=password,database=database)
@@ -132,11 +132,11 @@ def get_booking():
     else:
         try:
             connection=connectionpool.get_connection()
-            cursor = connection.cursor() 
+            cursor = connection.cursor(dictionary=True) 
             token=jwt.decode(cookie,secret.SECRET_KEY, algorithms=["HS256"]) 
           
             userID=token["id"]
-            sql='''select location.id,location.name,location.address,location.images,booking.date,booking.time,booking.price,booking.id from location inner join booking on location.id=booking.attraction_id where booking.user_id=%s;'''
+            sql='''select location.name,location.address,location.images,booking.attraction_id,booking.date,booking.time,booking.price,booking.id from location inner join booking on location.id=booking.attraction_id where booking.user_id=%s;'''
             val=(userID,)
             cursor.execute(sql,val)
             result=cursor.fetchall()
@@ -154,20 +154,20 @@ def get_booking():
                 for i in result:
                     att={}
                     data={}
-                    att["id"]=i[0];
-                    att["name"]=i[1];
-                    att["address"]=i[2];
-                    att["image"]=(i[3].split(","))[-1]
+                    att["id"]=i["attraction_id"];
+                    att["name"]=i["name"];
+                    att["address"]=i["address"];
+                    att["image"]=(i["images"].split(","))[-1]
                   
                     data["attraction"]=att
-                    data["date"]=i[4]
-                    data["time"]=i[5]
-                    data["price"]=i[6]
-                    data["bookingID"]=i[7]
+                    data["date"]=i["date"]
+                    data["time"]=i["time"]
+                    data["price"]=i["price"]
+                    data["bookingID"]=i["id"]
                   
                     content["data"].append(data)
                    
-                    print(content) 
+                
                     current_app.config['JSON_AS_ASCII'] = False
                     json_string=jsonify(content)
                     res=make_response(json_string,200) 

@@ -2,33 +2,55 @@
 <link
   rel="stylesheet"
   type="text/css"
-  href="{{ url_for('static',filename='styles/404/style.css') }}"
+  href="{{ url_for('static',filename='styles/thankyou/style.css') }}"
 />
 
 {% endblock %} {% block title %} <title>找不到此分頁</title>{% endblock %} {%
 block body %}
-<div class="error-div">
-  <img
-    src="{{url_for('static',filename='images/thank.png')}}"
-    alt=""
-    style="width: 130px; height: 130px"
-  />
-  <h1 style="font-size: 24px; font-weight: 700">行程預定成功</h1>
-  <h1 style="font-size: 24px; font-weight: 700">你的訂單編號如下</h1>
-  <h1 class="order_number"></h1>
-  <h1 style="font-size: 20px; font-weight: 400">可前往會員頁面管理訂單</h1>
-  <button class="back-btn" style="margin-bottom: 80px">會員頁面</button>
+<div class="thank-div">
+  <img src="{{url_for('static',filename='images/thank.png')}}" alt="" />
+  <h1>行程預定成功,詳細資料如下：</h1>
+
+  <!-- <div class="order-area">
+    <h2>訂單編號：<span class="order_number"></span></h2>
+
+    <div class="booking-area">
+      <div class="booking-pic">
+        <img rel="" src="https://picsum.photos/200/150?random=1" />
+      </div>
+      <div class="booking-detail">
+        <h3>平安鐘</h3>
+        <h4>日期：2022-12-20</h4>
+        <h4>時間：早上9點到下午四點</h4>
+
+        <h4>費用：2000元</h4>
+        <h4>地點：台北市</h4>
+      </div>
+    </div>
+
+    <div class="booking-area">
+      <div class="booking-pic">
+        <img rel="" src="https://picsum.photos/200/150?random=1" />
+      </div>
+      <div class="booking-detail">
+        <h3>平安鐘</h3>
+        <h4>日期：2022-12-20</h4>
+        <h4>時間：早上9點到下午四點</h4>
+
+        <h4>費用：2000元</h4>
+        <h4>地點：臺北市 中山區民權東路2段109號</h4>
+      </div>
+    </div>
+
+    <p>總價：<span>4500元</span></p>
+    <p>付款狀態：<span>付款完成</span></p>
+  </div> -->
+
+  <!-- <h1>可前往會員頁面管理訂單</h1>
+  <button class="back-btn">會員頁面</button> -->
 </div>
 
 {% endblock %} {% block script %}
-<script>
-  const backBtn = document.querySelector('.back-btn');
-  backBtn.addEventListener('click', () => {
-    window.open('/member', '_self');
-  });
-  let params = new URLSearchParams(window.location.search);
-  let orderNumber = params.get('number');
-  document.querySelector('.order_number').innerText = orderNumber;
-</script>
+<script src="{{ url_for('static',filename='js/thank.js') }}"></script>
 
 {% endblock %}

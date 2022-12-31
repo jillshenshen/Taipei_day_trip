@@ -9,6 +9,7 @@ import json ,jwt
 import mysql.connector
 from mysql.connector import Error,pooling
 from flask import current_app
+import secret as secret
 
 attraction_bp=Blueprint("attractions",__name__,static_folder="static")
 
@@ -16,7 +17,7 @@ poolname="pool"
 poolsize=5
 user="root"
 host="localhost"
-password="0000"
+password=secret.MYSQL_KEY
 database="trip"
 
 connectionpool=mysql.connector.pooling.MySQLConnectionPool(pool_name=poolname,pool_reset_session = True,pool_size=poolsize,user=user,host=host,password=password,database=database)
@@ -35,7 +36,7 @@ def attractions():
     
     try:
         connection=connectionpool.get_connection()
-        cursor = connection.cursor() 
+        cursor = connection.cursor(dictionary=True) 
         if keyword:
             sql='''select * from location where category=%s or name like concat('%',%s,'%')limit %s,12   '''	
             val=(keyword,keyword,x)
@@ -66,16 +67,16 @@ def attractions():
         for i in result:
             dic={}
         
-            dic["id"]=i[0]
-            dic["name"]=i[1]
-            dic["address"]=i[2]
-            dic["category"]=i[3]
-            dic["images"]=(i[5].split(","))
-            dic["transport"]=i[6]
-            dic["latitude"]=i[7]
-            dic["longitude"]=i[8]
-            dic["mrt"]=i[9]
-            dic["description"]=i[11]
+            dic["id"]=i["id"]
+            dic["name"]=i["name"]
+            dic["address"]=i["address"]
+            dic["category"]=i["category"]
+            dic["images"]=(i["images"].split(","))
+            dic["transport"]=i["transport"]
+            dic["latitude"]=i["latitude"]
+            dic["longitude"]=i["longitude"]
+            dic["mrt"]=i["mrt"]
+            dic["description"]=i["description"]
         
             content["data"].append(dic)
     except:    
@@ -105,23 +106,23 @@ def id(attractionID):
     
     try:
         connection=connectionpool.get_connection()
-        cursor = connection.cursor() 
+        cursor = connection.cursor(dictionary=True) 
         
         sql='''select * from location where id=%s  '''	
         val=(id,)
         cursor.execute(sql,val)
         result=cursor.fetchone()
         if result:
-            content["data"]["id"]=result[0]
-            content["data"]["name"]=result[1]
-            content["data"]["address"]=result[2]
-            content["data"]["category"]=result[3]
-            content["data"]["images"]=(result[5].split(","))
-            content["data"]["transport"]=result[6]
-            content["data"]["latitude"]=result[7]
-            content["data"]["longitude"]=result[8]
-            content["data"]["mrt"]=result[9]
-            content["data"]["description"]=result[11]
+            content["data"]["id"]=result["id"]
+            content["data"]["name"]=result["name"]
+            content["data"]["address"]=result["address"]
+            content["data"]["category"]=result["category"]
+            content["data"]["images"]=(result["images"].split(","))
+            content["data"]["transport"]=result["transport"]
+            content["data"]["latitude"]=result["latitude"]
+            content["data"]["longitude"]=result["longitude"]
+            content["data"]["mrt"]=result["mrt"]
+            content["data"]["description"]=result["description"]
             current_app.config['JSON_AS_ASCII'] = False
             json_string=jsonify(content)
             res=make_response(json_string,200)

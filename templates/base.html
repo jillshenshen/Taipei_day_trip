@@ -19,6 +19,12 @@
       href="{{url_for('static',filename='images/favicon.ico')}}"
     />
 
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/base/style.css') }}"
+    />
+
     <!-- -- css setting  -- -->
     {% block css %} {% endblock %} {% block title %} {% endblock %}
   </head>
@@ -52,7 +58,9 @@
             />
           </div>
           <div class="btn">
-            <button type="submit" class="login-submit">登入帳號</button>
+            <button type="submit" class="login-submit" disabled>
+              登入帳號
+            </button>
           </div>
           <div class="forgot">
             <p class="login-message"></p>
@@ -76,7 +84,7 @@
               type="text"
               name="name"
               placeholder="輸入姓名"
-              class="signup-name"
+              class="signup-name signup-target"
               required
             />
           </div>
@@ -85,7 +93,7 @@
               type="email"
               name="email"
               placeholder="輸入電子信箱"
-              class="signup-email"
+              class="signup-email signup-target"
               required
             />
           </div>
@@ -94,12 +102,14 @@
               type="password"
               name="password"
               placeholder="輸入密碼"
-              class="signup-password"
+              class="signup-password signup-target"
               required
             />
           </div>
           <div class="btn">
-            <button type="submit" class="signup-submit">註冊新帳號</button>
+            <button type="submit" class="signup-submit" disabled>
+              註冊新帳號
+            </button>
           </div>
           <div class="forgot">
             <p class="signup-message"></p>
@@ -111,7 +121,23 @@
 
     <header>
       <div class="head">
-        <h4 onclick="javascript:location.href='/'">台北一日遊</h4>
+        <div style="position: relative">
+          <h4 onclick="javascript:location.href='/'">
+            台北<span style="color: #fff; position: relative">一</span>日遊
+            <img
+              src="{{url_for('static',filename='images/101.png')}}"
+              alt=""
+              style="
+                width: 35px;
+                height: 35px;
+                position: absolute;
+                top: 8px;
+                left: 58px;
+              "
+            />
+          </h4>
+        </div>
+
         <nav>
           <ul>
             <li>
@@ -119,8 +145,12 @@
                 src="{{url_for('static',filename='images/account.png')}}"
                 alt=""
                 class="account"
-                onclick="member()"
               />
+              <ul class="second-ul">
+                <li onclick="member()">帳號管理</li>
+                <li onclick="order()">訂單管理</li>
+                <li onclick="logout()">登出系統</li>
+              </ul>
             </li>
 
             <li>
@@ -148,12 +178,23 @@
     {% block body %} {% endblock %}
 
     <footer class="footer">
-      <p>COPYRIGHT © 2022 台北一日遊</p>
+      <p>
+        COPYRIGHT © 2022 台北<span style="color: #757575; position: relative"
+          >一<img
+            src="{{url_for('static',filename='images/101w.png')}}"
+            style="
+              width: 30px;
+              height: 30px;
+              position: absolute;
+              top: -6px;
+              right: -7px;
+            "
+            alt="" /></span
+        >日遊
+      </p>
     </footer>
   </body>
   <script src="{{ url_for('static',filename='js/login.js') }}"></script>
 
-  {% block script %} 
- 
-  {% endblock %}
+  {% block script %} {% endblock %}
 </html>

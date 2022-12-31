@@ -72,107 +72,9 @@ body {
     }
   }
 
-  div.login {
-    background-color: rgba(0, 0, 0, 0.25);
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    display: none;
-    justify-items: center;
-    align-items: center;
-    z-index: 99;
-    div.login-container {
-      position: absolute;
-      top: 80px;
-      left: 50%;
-      transform: translate(-50%, -10px);
-      background-color: #fff;
-      width: 340px;
-      height: 275px;
-      border-radius: 6px;
-      padding: 0 15px;
-      box-sizing: border-box;
-      .close {
-        position: absolute;
-        right: 17px;
-        top: 30px;
-        cursor: pointer;
-        width: 20px;
-        height: 20px;
-      }
-      div.text {
-        font-size: 24px;
-        font-weight: 700;
-        text-align: center;
-        color: #666666;
-        margin-top: 25px;
-        margin-bottom: 15px;
-      }
 
-      div.data input {
-        height: 47px;
-        width: 100%;
-        margin-bottom: 10px;
-        border: 1px solid #cccccc;
-        border-radius: 5px;
-        font-size: 16px;
-        font-weight: 500;
-        padding: 15px;
-      }
-      div.btn button {
-        -webkit-border-radius: 5;
-        -moz-border-radius: 5;
-        border-radius: 5px;
-        width: 100%;
-        height: 47px;
-        font-size: 19px;
-        color: #ffffff;
-        background: #448899;
-        line-height: 36px;
-        text-decoration: none;
-        padding-top: 10px 20px 10px 20px;
-        border: none;
-        margin-bottom: 10px;
-        cursor: pointer;
-      }
-      div.forgot {
-        text-align: center;
-        color: #666666;
-        p.login-message {
-          display: none;
-        }
-        span.signup-text {
-          cursor: pointer;
-        }
-      }
-    }
 
-    div.login-container::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      height: 10px;
-      width: 100%;
-      background-color: #448899;
-      border-radius: 6px 6px 0 0;
-    }
-  }
 
-  div.signup {
-    div.login-container {
-      height: 332px;
-
-      div.forgot {
-        p.signup-message {
-          display: none;
-        }
-        span.login-text {
-          cursor: pointer;
-        }
-      }
-    }
-  }
 }
 hr {
   border: 0.5px solid var(--secondary-color-20);
@@ -183,74 +85,7 @@ hr.second {
   margin: auto;
 }
 
-header {
-  max-width: 1920px;
-  height: 54px;
-  line-height: 54px;
-  display: flex;
-  justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 98;
-  background-color: #ffffff;
 
-  div.head {
-    display: flex;
-    justify-content: space-between;
-    width: 1200px;
-    h4 {
-      font-size: 30px;
-      font-weight: 1000;
-      color: #448899;
-      cursor: pointer;
-    }
-
-   
-    nav {
-      ul {
-        display: flex;
-        justify-content: flex-end;
-        li {
-          list-style-type: none;
-        }
-        img.account {
-          width: 25px;
-          height: 25px;
-          margin-top: 15px;
-          margin-right: 8px;
-          cursor: pointer;
-          display: none;
-        }
-
-        img.cart {
-          width: 25px;
-          height: 25px;
-          margin-top: 15px;
-          cursor: pointer;
-          display: none;
-        }
-
-        a.list {
-          display: none;
-        }
-        a.show {
-          margin-left: 1rem;
-          list-style-type: none;
-          color: var(--secondary-color);
-          font-size: 16px;
-          font-weight: 500;
-          text-align: center;
-          text-decoration: none;
-          display: flex;
-          cursor: pointer;
-        }
-        img.show-icon {
-          display: flex;
-        }
-      }
-    }
-  }
-}
 
 section.container {
   height: 100%;
@@ -336,7 +171,7 @@ section.container {
         font-size: 16px;
         font-weight: 500;
         color: var(--secondary-color);
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
     }
 
@@ -346,7 +181,7 @@ section.container {
       padding: 15px 20px 0 20px;
       border-radius: 5px;
       width: 100%;
-      height: 310px;
+      height: 320px;
       background-color: var(--secondary-color-20);
       h1 {
         font-size: 16px;
@@ -437,6 +272,13 @@ section.container {
         margin-bottom: 41px;
         border: none;
         cursor: pointer;
+      }
+      button:hover{
+        background-color: #fff;
+        color: #448899;
+        border: 2px solid #448899;
+        transition: 0.5s;
+    
       }
     }
   }

@@ -1,6 +1,7 @@
 let page = 0;
 let keyword;
 let fetching = false;
+document.querySelector('.load-div').style.display = 'block';
 const getPage = async () => {
   fetching = true;
   const container = document.querySelector('.container');
@@ -18,7 +19,7 @@ const getPage = async () => {
   let parseData = await data.json();
 
   page = parseData.nextPage;
-
+  document.querySelector('.load-div').style.display = 'none';
   if (parseData.data.length !== 0) {
     let getData = parseData.data;
     for (let i = 0; i < 12; i++) {
@@ -83,10 +84,12 @@ getPage();
 // 捲軸設定
 window.addEventListener('scroll', () => {
   if (fetching) {
+    document.querySelector('.load').style.display = 'none';
     return;
   }
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
   if (clientHeight + scrollTop >= scrollHeight) {
+    document.querySelector('.load').style.display = 'block';
     getPage();
   }
 });
