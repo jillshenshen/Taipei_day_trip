@@ -8,7 +8,22 @@
 {% endblock %} {% block title %}
 <title>會員頁面</title>
 {% endblock %} {% block body %}
+
+<div class="submit">
+  <div class="submit-container">
+    <img
+      src="{{url_for('static',filename='images/icon_close.png')}}"
+      alt=""
+      class="submit-close"
+    />
+    <div class="submit-message">儲存成功</div>
+   
+  </div>
+</div>
+
+
 <main class="member-main">
+  
   <div class="member-id first">
     <div class="member-pic">
       <img
@@ -18,10 +33,14 @@
         id="user-img"
       />
     </div>
-    <input type="file" id="file" accept="image/*" / hidden>
+ 
+      <input type="file" id="file" accept="image/*" hidden/ >
+      <h2 class="member-name"></h2>
+      <button  class="allBtn member-btn" onclick="fileActive()">上傳照片</button>
 
-    <h2 class="member-name"></h2>
-    <button class="allBtn member-btn" onclick="fileActive()">上傳照片</button>
+   
+
+   
   </div>
   
   <div class="member-id second">
@@ -30,52 +49,55 @@
 
     <div class="field">
       <div class="input-field">
-        <label for="">名<span> *</span></label>
+        <label for="">姓名<span> *</span></label>
         <input type="text" 
-        class="input-1 input-name" required />
+        class="input-1 input-name" id="input1" name="name"/>
+        <label class="required">此欄位必填</label>
       </div>
       <div class="input-field">
-        <label for="">姓 <span> *</span></label>
+        <label for="">身分證字號</label>
         <input type="text"
-        class="input-1" required />
+        class="input-1" id="input2" name="ids"/>
       </div>
       <div class="input-field">
         <label for="gender">性別</label>
-        <select name="gender" id="">
-          <option value="female">女性</option>
-          <option value="male">男性</option>
+        <select name="gender" id="input3">
+          <option value="">請選擇</option>
+          <option name="female" value="female">女性</option>
+          <option name="male" value="male">男性</option>
         </select>
       </div>
 
       <div class="input-field">
         <label for="">英文名</label>
-        <input type="text"   />
+        <input type="text"  id="input4" name="first"/>
       </div>
       <div class="input-field">
         <label for="">英文姓</label>
-        <input type="text"  />
+        <input type="text"  id="input5" name="last"/>
       </div>
       <div class="input-field">
         <label for="">護照號碼</label>
-        <input type="text"  />
+        <input type="text" id="input6" name="passport"/>
       </div>
 
       <div class="input-field ">
         <label for="">出生日期</label>
-        <input type="date" />
+        <input type="date" id="input7"name="birth" />
       </div>
       <div class="input-field">
         <label for="">國家/地區</label>
-        <input type="text" />
+        <input type="text" id="input8" name="country"/>
       </div>
 
       <div class="input-field "  id="tel-input">
-        <label for="">電話號碼<span> *</span></label>
-        <input type="tel"  required />
+        <label for="">電話號碼</label>
+        <input type="tel"  id="input9" name="phone" />
       </div>
       <div class="input-field" id="email-input">
         <label for="">聯絡Email<span> *</span></label>
-        <input type="email" class="input-1 input-2 input-email"required />
+        <input type="email" class="input-1 input-2 input-email" id="input10" name="email"/>
+        <label class="required1">此欄位必填</label>
       </div>
 
     </div>
@@ -96,9 +118,10 @@
     src="{{url_for('static',filename='images/task.png')}}"
     alt=""
     class="task-img"
+    onclick="orderCheck()"
   />
     <div>
-      <button class="allBtn task-btn">查看訂單</button>
+      <button class="allBtn task-btn" onclick="orderCheck()">查看訂單</button>
     </div>
    
   </div>

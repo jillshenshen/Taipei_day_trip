@@ -8,6 +8,7 @@ function booking_check() {
       if (!result.data) {
         window.open('/', '_self');
       } else {
+        document.querySelector('.load').style.display = 'block';
         get_data();
       }
     });
@@ -26,7 +27,8 @@ function get_data() {
     })
     .then((result) => {
       let array = result.data;
-
+      console.log(array);
+      document.querySelector('.load').style.display = 'none';
       const title = document.querySelector('.title');
       title.innerText = `你好，${nameData}，待預定的行程如下：`;
 
@@ -111,8 +113,6 @@ function get_data() {
           area.append(pic, detail, deleteImg);
           bookingSection.append(area);
         });
-
-        console.log(tripObj);
 
         document.querySelector(
           '.totalCost'
@@ -317,3 +317,13 @@ function close_error() {
   document.querySelector('.submit').style.display = 'none';
   document.querySelector('.submit-message').style.visibility = 'hidden';
 }
+
+const contactPhone = document.querySelector('.contactPhone');
+
+contactPhone.addEventListener('blur', () => {
+  const phoneRegex = /^\d{6,14}$/;
+  const isValidPhone = phoneRegex.test(contactPhone.value);
+  if (!isValidPhone) {
+    document.querySelector('.failMessage').innerText = '手機格式錯誤';
+  }
+});

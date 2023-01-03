@@ -39,43 +39,92 @@ const signupSubmit = document.querySelector('.signup-submit');
 const signupName = document.querySelector('.signup-name');
 const signupEmail = document.querySelector('.signup-email');
 const signupPassword = document.querySelector('.signup-password');
+
+document
+  .querySelectorAll('input[type=text],input[type=email],input[type=password]')
+  .forEach((input) => {
+    input.addEventListener('input', () => {
+      if (signupName.value && signupEmail.value && signupPassword.value) {
+        signupSubmit.removeAttribute('disabled');
+      } else {
+        signupSubmit.setAttribute('disabled', true);
+      }
+    });
+  });
+
 signupSubmit.addEventListener('click', (e) => {
   e.preventDefault();
+  signupSubmit.setAttribute('disabled', true);
   let signupNameVl = signupName.value;
   let signupEmailVl = signupEmail.value;
   let signupPasswordVl = signupPassword.value;
   signupName.value = '';
   signupEmail.value = '';
   signupPassword.value = '';
-  fetch(`/api/user`, {
-    method: 'POST',
-    body: JSON.stringify({
-      name: `${signupNameVl}`,
-      email: `${signupEmailVl}`,
-      password: `${signupPasswordVl}`,
-    }),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  })
-    .then((response) => response.json())
-    .then(function (result) {
-      if (result.ok) {
-        document.querySelector('.signup-message').style.display = 'block';
-        document.querySelector('.signup-message').innerText = '註冊會員成功';
-        document.querySelector('.signup-message').style.color = '#FF6464';
 
-        document.getElementById('signup-container').style.height = '360px';
-      } else {
-        document.querySelector('.signup-message').style.display = 'block';
-        document.querySelector('.signup-message').innerText =
-          '註冊會員失敗,請提供其他E-mail';
-        document.querySelector('.signup-message').style.color = '#68B984';
+  const email = signupEmailVl;
+  const emailRegex =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  const isValidEmail = emailRegex.test(email);
 
-        document.getElementById('signup-container').style.height = '360px';
-      }
-    });
+  if (signupEmailVl === '' || signupNameVl === '' || signupPasswordVl === '') {
+    document.querySelector('.signup-message').style.display = 'block';
+    document.querySelector('.signup-message').innerText = '有欄位未填寫';
+    document.querySelector('.signup-message').style.color = '#68B984';
+
+    document.getElementById('signup-container').style.height = '360px';
+  } else if (!isValidEmail) {
+    document.querySelector('.signup-message').style.display = 'block';
+    document.querySelector('.signup-message').innerText =
+      '註冊失敗,請提供正確email';
+    document.querySelector('.signup-message').style.color = '#68B984';
+
+    document.getElementById('signup-container').style.height = '360px';
+  } else {
+    fetch(`/api/user`, {
+      method: 'POST',
+      body: JSON.stringify({
+        name: `${signupNameVl}`,
+        email: `${signupEmailVl}`,
+        password: `${signupPasswordVl}`,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then(function (result) {
+        if (result.ok) {
+          document.querySelector('.signup-message').style.display = 'block';
+          document.querySelector('.signup-message').innerText = '註冊會員成功';
+          document.querySelector('.signup-message').style.color = '#FF6464';
+
+          document.getElementById('signup-container').style.height = '360px';
+        } else {
+          document.querySelector('.signup-message').style.display = 'block';
+          document.querySelector('.signup-message').innerText = result.message;
+          document.querySelector('.signup-message').style.color = '#68B984';
+
+          document.getElementById('signup-container').style.height = '360px';
+        }
+      });
+  }
 });
+
+const signupTarget = document.querySelectorAll('.signup-target');
+
+signupTarget.forEach((target) => {
+  target.addEventListener('blur', () => {
+    if (signupName.value.trim() === '') {
+      document.querySelector('.signup-message').style.display = 'block';
+      document.querySelector('.signup-message').innerText = '此欄位必填';
+      document.querySelector('.signup-message').style.color = '#68B984';
+
+      document.getElementById('signup-container').style.height = '360px';
+    }
+  });
+});
+
 /* -------------------------fetch login 登入 api------------------------------ */
 const loginSubmit = document.querySelector('.login-submit');
 const nav = document.querySelector('.nav');
@@ -85,7 +134,20 @@ let navList = document.querySelector('.nav-list');
 const logoutBtn = document.querySelector('.logout-btn');
 const booking = document.querySelector('.booking');
 
+document
+  .querySelectorAll('input[type=email],input[type=password]')
+  .forEach((input) => {
+    input.addEventListener('input', () => {
+      if (loginEmail.value && loginPassword.value) {
+        loginSubmit.removeAttribute('disabled');
+      } else {
+        loginSubmit.setAttribute('disabled', true);
+      }
+    });
+  });
+
 loginSubmit.addEventListener('click', (e) => {
+  loginSubmit.setAttribute('disabled', true);
   e.preventDefault();
   let loginEmailVl = loginEmail.value;
   let loginPasswordVl = loginPassword.value;
@@ -143,11 +205,11 @@ async function check() {
     booking.classList.add('show-icon');
     account.classList.add('show-icon');
     nav.classList.remove('show');
-    logoutBtn.classList.add('show');
+    // logoutBtn.classList.add('show');
   } else {
     booking.classList.add('show-icon');
     nav.classList.add('show');
-    logoutBtn.classList.remove('show');
+    // logoutBtn.classList.remove('show');
     account.classList.remove('show-icon');
   }
 }
@@ -172,6 +234,27 @@ async function member() {
   if (result.data) {
     window.open('/member', '_self');
   } else {
-    document.querySelector('.account').style.display = 'flex';
+    window.open('/', '_self');
+ 
   }
 }
+async function order() {
+  const response = await fetch('/api/user/auth');
+  const result = await response.json();
+  if (result.data) {
+    window.open('/order', '_self');
+  } else {
+    window.open('/', '_self');
+   
+  }
+}
+
+const secondUl = document.querySelector('.second-ul');
+
+document.addEventListener('click', (e) => {
+  if (e.target === account || e.target === secondUl) {
+    secondUl.style.visibility = 'visible';
+  } else {
+    secondUl.style.visibility = 'hidden';
+  }
+});

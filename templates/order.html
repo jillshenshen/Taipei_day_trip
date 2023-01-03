@@ -1,0 +1,89 @@
+{% extends "base.html" %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='styles/order/style.css') }}"
+/>
+
+{% endblock %} {% block title %}
+<title>會員頁面</title>
+{% endblock %} {% block body %}
+<main class="member-main">
+  <div class="member-id first">
+    <div class="member-pic">
+      <img
+        src="{{url_for('static',filename='images/user.png')}}"
+        alt=""
+        onclick="fileActive()"
+        id="user-img"
+      />
+    </div>
+    <input type="file" id="file" accept="image/*" / hidden>
+
+    <h2 class="member-name"></h2>
+    <button class="allBtn member-btn" onclick="fileActive()">上傳照片</button>
+  </div>
+
+  <div class="member-id second">
+    <h1>訂單管理</h1>
+    <hr />
+
+    <!-- <div class="order-area">
+      <h2 style="background-color: #f5f5f5">
+        訂單編號：<span>123456789000</span>
+      </h2>
+
+      <div class="booking-area">
+        <div class="booking-pic">
+          <img rel="" src="https://picsum.photos/200/150?random=1" />
+        </div>
+        <div class="booking-detail">
+          <h3>平安鐘</h3>
+          <h4>日期：2022-12-20</h4>
+          <h4>時間：早上9點到下午四點</h4>
+
+          <h4>費用：2000元</h4>
+          <h4>地點：台北市</h4>
+        </div>
+      </div>
+
+      <div class="booking-area">
+        <div class="booking-pic">
+          <img rel="" src="https://picsum.photos/200/150?random=1" />
+        </div>
+        <div class="booking-detail">
+          <h3>平安鐘</h3>
+          <h4>日期：2022-12-20</h4>
+          <h4>時間：早上9點到下午四點</h4>
+
+          <h4>費用：2000元</h4>
+          <h4>地點：臺北市 中山區民權東路2段109號</h4>
+        </div>
+      </div>
+
+      <p>總價：<span>4500元</span></p>
+      <p>付款狀態：<span>付款完成</span></p>
+    </div> -->
+  </div>
+
+  <div class="member-id third">
+    <h2>帳號設定</h2>
+    <hr />
+    <img
+      src="{{url_for('static',filename='images/acc.png')}}"
+      alt=""
+      class="task-img"
+      onclick="updateData()"
+    />
+    <div>
+      <button class="allBtn task-btn" onclick="updateData()">修改資料</button>
+    </div>
+  </div>
+</main>
+
+{% endblock %} {% block script %}
+
+<script src="{{ url_for('static',filename='js/order.js') }}"></script>
+
+<script></script>
+{% endblock %}
