@@ -35,8 +35,7 @@ Alternatively, you can create your own account in the registration field to use 
 **Homepage browsing**  
 - infinite scroll to browse all attraction information (12 new attractions listed at once), or search for attraction titles by keyword.
 
-
-
+![Alt Text](https://github.com/jillshenshen/Taipei_day_trip/blob/main/static/images/home.gif)
 
 
 
