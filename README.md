@@ -33,10 +33,14 @@ Alternatively, you can create your own account in the registration field to use 
 ## Introduction to website features
 
 **Homepage browsing**  
-- infinite scroll to browse all attraction information (12 new attractions listed at once), or search for attraction titles by keyword.
+- Infinite scroll to browse all attraction information (12 new attractions listed at once), or search for attraction titles by keyword.
 
 ![Alt Text](https://github.com/jillshenshen/Taipei_day_trip/blob/main/static/images/home.gif)
 
+**Login and booking process**  
+- User can sign up and login and then enter each attraction's page to see more detail.
+- Carousel slider to see more images. 
+- Add a tour to shopping cart and delete it. 
 
 
 
