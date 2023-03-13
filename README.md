@@ -42,5 +42,13 @@ Alternatively, you can create your own account in the registration field to use 
 - Carousel slider to see more images. 
 - Add a tour to shopping cart and delete it. 
 
+![Alt Text](https://github.com/jillshenshen/Taipei_day_trip/blob/main/static/images/login.gif)
+
+**Payment process and member page** 
+- Make payment in the shopping cart
+- View all past orders and update personal information in the member system.
+
+![Alt Text](https://github.com/jillshenshen/Taipei_day_trip/blob/main/static/images/member.gif)
+
 
 
