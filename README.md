@@ -33,7 +33,8 @@ Alternatively, you can create your own account in the registration field to use 
 ## Introduction to website features
 
 **Homepage browsing**  
-- Infinite scroll to browse all attraction information (12 new attractions listed at once), or search for attraction titles by keyword.
+- Infinite scroll to browse all attraction information (12 new attractions listed at once).  
+- Search for attraction titles by genres and keyword.
 
 ![Alt Text](https://github.com/jillshenshen/Taipei_day_trip/blob/main/static/images/home.gif)
 
@@ -45,7 +46,7 @@ Alternatively, you can create your own account in the registration field to use 
 ![Alt Text](https://github.com/jillshenshen/Taipei_day_trip/blob/main/static/images/login.gif)
 
 **Payment process and member page** 
-- Make payment in the shopping cart
+- Make payment in the shopping cart.
 - View all past orders and update personal information in the member system.
 
 ![Alt Text](https://github.com/jillshenshen/Taipei_day_trip/blob/main/static/images/member.gif)
