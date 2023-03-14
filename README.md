@@ -1,4 +1,6 @@
 # Taipei day trip - Full-stack E-commerce Tourism website
+![Responsive Design](https://github.com/jillshenshen/Taipei_day_trip/raw/main/static/images/responsive.png "Responsive Design")
+
 This project uses data from the Taipei Open Data Platform's Taipei attractions as the basis for building a one-day tour e-commerce website that includes the following features:
 
 
