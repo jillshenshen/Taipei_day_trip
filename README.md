@@ -7,7 +7,7 @@ This project uses data from the Taipei Open Data Platform's Taipei attractions a
 - Integration with the TapPay payment gateway, allowing for payment functionality using test credit cards.
 - Allows users to upload personal profile pictures, update basic personal information, and browse order history.
 
-![Responsive Design](https://github.com/jillshenshen/Taipei_day_trip/raw/main/static/images/responsive.png "Responsive Design")
+![Responsive Design](https://github.com/jillshenshen/Taipei_day_trip/blob/main/static/images/taipeidaytrip.png "Responsive Design")
 
 
 ## DEMO
